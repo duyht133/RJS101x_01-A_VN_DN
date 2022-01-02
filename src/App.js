@@ -1,5 +1,7 @@
-import './App.css';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import "./App.css";
+import Menucomponent from "./components/Menucomponent.js";
+import { Navbar, NavbarBrand } from "reactstrap";
+
 function App() {
   return (
     <div className="App">
@@ -8,7 +10,11 @@ function App() {
           <NavbarBrand href="/">tao moi reactjs</NavbarBrand>
         </div>
       </Navbar>
+   
+      <Menucomponent />
+
     </div>
+
   );
 }
 
