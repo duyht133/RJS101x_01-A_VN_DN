@@ -1,55 +1,81 @@
 import React, { Component } from "react";
 import { Media } from "reactstrap";
 
-const menu = [
-  {
-    id: 0,
-    name: "Uthappiza",
-    image: "https://media-cdn.tripadvisor.com/media/photo-s/13/89/1b/c2/48-pizza.jpg",
-    category: "mains",
-    label: "hot",
-    price: "4.99$",
-    description: "món ăn ấn độ",
-  },
-  {
-    id: 2,
-    name: "pizza lao",
-    image: "https://top10quynhon.com/wp-content/uploads/pizza.jpg",
-    category: "mains",
-    label: "very hot",
-    price: "7.49$",
-    description: "món ăn ấn độ",
-  },
-];
+class Menu extends Component {
+  constructor(props) {
+    super(props);
 
-function Menuitem({ id, name, image, price }) {
+    this.state = {
+      dishes:[
+        {
+          id: 0,
+          name:"pizzachicken",
+          image:"https://cdn.tgdd.vn/2020/09/CookProduct/1200bzhspm-1200x676.jpg",
+          category:"mains",
+          label:"Hot",
+          price:"4.99",
+          description:"ăn thơm mùi gà",
+        },
+        {
+          id: 2,
+          name:"pizzacow",
+          image:"https://img.dominos.vn/Veggie-mania.jpg",
+          category:"nuong",
+          label:"burn",
+          price:"8.99",
+          description:"pizza con bò cười",
+        },
+        {
+          id: 3,
+          name:"pizza8c",
+          image:"https://petercat.net/wp-content/uploads/2020/04/delish-homemade-pizza-horizontal-1542312378.png",
+          category:"hap",
+          label:"Hot",
+          price:"7.99",
+          description:"pizza hấp",
+        },
+        {
+          id: 4,
+          name:"pizzaquay",
+          image:"https://dulichkhampha24.com/wp-content/uploads/2020/09/pizza-ha-noi.jpg",
+          category:"quay",
+          label:"Hot",
+          price:"6.99",
+          description:"quay lên như bò",
+        },
+      ]
+    }
+  }
+
+  render() {
+    const menu = this.state.dishes.map((e)=>{
+      return (
+          <div key={e.id} className="col-12 mt-5">
+            <Media tag="li">
+
+              <Media left middle>
+                  <Media object src={e.image} alt={e.name}/>
+              </Media>
+
+              <Media body className="ml-5">
+                <Media heading>{e.name}</Media>
+                <p>{e.description}</p>
+              </Media>
+
+            </Media>
+          </div>
+      )
+    });
     return (
-      <div class="course-item">
-        <img src={id} />
-        <h2>{name}</h2>
-        <p> {image} </p>
-        <p> {price} </p>
+      <div className="container">
+        <div className="row">
+          <Media list>
+              {menu}
+           </Media>
+        </div>
       </div>
     );
+  }
 }
 
-function Menucomponent() {
-  
-  return (
-    <div className="container">
-      <div className="row">
-        <Media list>
-             {menu.map((e) => {
-                 return <Menuitem 
-                    id = {e.id}
-                    name = {e.name}
-                    image = {e.image}
-                    price = {e.price}
-                 />
-             })}
-        </Media>
-      </div>
-    </div>
-  );
-}
-export default Menucomponent;
+export default Menu;

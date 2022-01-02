@@ -1,17 +1,17 @@
 import "./App.css";
-import Menucomponent from "./components/Menucomponent.js";
+import Menu from "./components/Menucomponent";
 import { Navbar, NavbarBrand } from "reactstrap";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Navbar dark color="primary">
         <div className="container">
           <NavbarBrand href="/">tao moi reactjs</NavbarBrand>
         </div>
       </Navbar>
    
-      <Menucomponent />
+      <Menu/>
 
     </div>
 
