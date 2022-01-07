@@ -48,12 +48,15 @@ class Menu extends Component {
     });
     return (
       <div className="container">
+
         <div className="row">
           {menu}
         </div>
+
         <div className="row">
           {this.renderDish(this.state.selectedDish)}
         </div>
+        
       </div>
     );
   }
