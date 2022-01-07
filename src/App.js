@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
 import Menu from "./components/Menucomponent";
-/* import Testcomponents from "./components/Testcomponents"; */
 import StaffListComponent from "./components/StaffListComponent";
 import { Navbar, NavbarBrand } from "reactstrap";
 import { STAFFS } from "./shared/staffs";
@@ -25,7 +24,6 @@ class App extends Component {
           </div>
         </Navbar>
         {/* <Menu dishes={this.state.dishes}/> */}
-        {/* <Testcomponents /> */}
 
         <StaffListComponent STAFFS={this.state.STAFFS}/>
 
