@@ -57,17 +57,17 @@ class StaffListComponent extends Component {
       });
 
     return (
-      <>
-        <div>
+      <div className="full">
+        <div >
           {STAFFS}
         </div>
-        <div>
+        <div className="text">
           Bấm vào tên nhân viên để xem thông tin.
         </div>
         <div>
           {this.renderDish(this.state.selectedDish)}
         </div>
-      </>
+      </div>
     );
   }
 }
