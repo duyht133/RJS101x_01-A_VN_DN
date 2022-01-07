@@ -42,6 +42,7 @@ class StaffListComponent extends Component {
   render() {
     let STAFFS = this.props.STAFFS.map((e) => {
         return (
+          <>
           <row
             className="table"
             key={e.id}
@@ -50,6 +51,8 @@ class StaffListComponent extends Component {
               this.handle(e);
             }} className="col-lg-4 col-md-6 col-12 button" >{e.name}</button>
           </row>
+          
+          </>
         );
       });
 
@@ -58,7 +61,9 @@ class StaffListComponent extends Component {
         <div>
           {STAFFS}
         </div>
-
+        <div>
+          Bấm vào tên nhân viên để xem thông tin.
+        </div>
         <div>
           {this.renderDish(this.state.selectedDish)}
         </div>
