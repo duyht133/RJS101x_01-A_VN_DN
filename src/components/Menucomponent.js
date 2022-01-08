@@ -27,7 +27,9 @@ class Menu extends Component {
       )
     }else{
       return(
-        <div></div>
+        <div>
+          <button> hide </button>
+        </div>
       )
     }
   }
@@ -56,7 +58,7 @@ class Menu extends Component {
         <div className="row">
           {this.renderDish(this.state.selectedDish)}
         </div>
-        
+ 
       </div>
     );
   }
