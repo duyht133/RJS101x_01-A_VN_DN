@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Row } from "reactstrap";
 import dateFormat from "dateformat";
 
 class StaffListComponent extends Component {
@@ -10,12 +11,12 @@ class StaffListComponent extends Component {
     };
   }
 
-  handle = (e,status) => {
+  handle = (e) => {
     this.setState({ selectedDish: e });
     /* this.setState({ hide: status }); */
   };
 
-  renderDish = (e,status) => {
+  renderDish = (e) => {
     
     if (e != null) {
       return (
@@ -33,13 +34,20 @@ class StaffListComponent extends Component {
             <br />
             Số ngày đã làm thêm: {e.overTime}
           </div>
+          <div className="hide">
+            <button
+              onClick={() => {
+                this.handle();
+              }}
+              >
+              HIDE
+            </button>
+          </div>
         </div>
       );
     }else {
       return(
-        <div>
-          
-        </div>
+        <div></div>
       )
     }
   };
@@ -50,7 +58,7 @@ class StaffListComponent extends Component {
     let STAFFS = this.props.STAFFS.map((e) => {
       return (
         <>
-          <row className="table" key={e.id}>
+          <Row className="table" key={e.id}>
             <button
               onClick={() => {
                 this.handle(e);
@@ -59,7 +67,7 @@ class StaffListComponent extends Component {
             >
               {e.name}
             </button>
-          </row>
+          </Row>
         </>
       );
     });
@@ -69,18 +77,7 @@ class StaffListComponent extends Component {
         <div>{STAFFS}</div>
         <div className="text">Bấm vào tên nhân viên để xem thông tin.</div>
         <div>{this.renderDish(this.state.selectedDish)}</div>
-
-        {/* {this.state.hide === false && (
-            )} */}
-          <div className="hide">
-            <button
-              onClick={() => {
-                this.handle();
-              }}
-              >
-              HIDE
-            </button>
-          </div>
+   
       </div>
     );
   }
