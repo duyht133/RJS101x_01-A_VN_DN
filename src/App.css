@@ -40,6 +40,21 @@
   font-size:27px;
 }
 
+.hide{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:20px 0px;
+  
+}
+.hide > button{
+  border: none;
+  background-color:#85dcb8;
+  border-radius: 10px;
+  padding:10px;
+}
+
+/* responsive */
 @media screen and (max-width:1700px) {
   .render{
     margin:0 500px;
@@ -59,17 +74,4 @@
   .render{
     margin:0 50px;
   }
-}
-.hide{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin:20px 0px;
-  
-}
-.hide > button{
-  border: none;
-  background-color:#85dcb8;
-  border-radius: 10px;
-  padding:10px;
 }
