@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row } from "reactstrap";
+import { Row,Div } from "reactstrap";
 import dateFormat from "dateformat";
 
 class StaffListComponent extends Component {
@@ -7,13 +7,12 @@ class StaffListComponent extends Component {
     super(props);
     this.state = {
       selectedDish: null,
-     /*  hide: false, */
+     
     };
   }
 
   handle = (e) => {
     this.setState({ selectedDish: e });
-    /* this.setState({ hide: status }); */
   };
 
   renderDish = (e) => {
@@ -34,20 +33,13 @@ class StaffListComponent extends Component {
             <br />
             Số ngày đã làm thêm: {e.overTime}
           </div>
-          <div className="hide">
-            <button
-              onClick={() => {
-                this.handle();
-              }}
-              >
-              HIDE
-            </button>
-          </div>
         </div>
       );
     }else {
       return(
-        <div></div>
+        <div>
+          
+        </div>
       )
     }
   };
@@ -58,17 +50,18 @@ class StaffListComponent extends Component {
     let STAFFS = this.props.STAFFS.map((e) => {
       return (
         <>
-          <Row className="table" key={e.id}>
+          <row className="table" key={e.id}>
             <button
               onClick={() => {
                 this.handle(e);
               }}
               className="col-lg-4 col-md-6 col-12 button"
-            >
+              >
               {e.name}
             </button>
-          </Row>
+          </row>
         </>
+        
       );
     });
 
@@ -77,7 +70,18 @@ class StaffListComponent extends Component {
         <div>{STAFFS}</div>
         <div className="text">Bấm vào tên nhân viên để xem thông tin.</div>
         <div>{this.renderDish(this.state.selectedDish)}</div>
-   
+
+        {/* {this.state.hide === false && (
+            )} */}
+          <div className="hide">
+            <button
+              onClick={() => {
+                this.handle();
+              }}
+              >
+              HIDE
+            </button>
+          </div>
       </div>
     );
   }
