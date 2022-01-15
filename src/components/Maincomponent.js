@@ -3,6 +3,8 @@ import { dishes } from "../share/dishes";
 import { Navbar, NavbarBrand } from "reactstrap";
 import Menu from "./Menucomponents";
 import Dishdetail from "./DishdetailComponents";
+import Header from "./Headercomponent";
+import Footer from "./Footercomponent";
 import "./App.css";
 
 function Main() {
@@ -21,16 +23,13 @@ function Main() {
         </Navbar>
       </div>
 
-      <div>
-        {dishes.map((data) => (
-          <Menu renderInfo={onSelecdish} key={data.id} data={data} />
-        ))}
-      </div>
       
-      <div>
-        <Dishdetail renderComment={onSelecdish} dish={dishSelected} />
-      </div>
-
+      <Header/>
+      {dishes.map((data) => (
+        <Menu renderInfo={onSelecdish} key={data.id} data={data} />
+      ))}
+      <Dishdetail /* renderComment={onSelecdish} */ dish={dishSelected} />
+      <Footer/>
       
     </>
   );
