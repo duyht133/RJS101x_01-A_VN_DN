@@ -10,12 +10,12 @@ function Menu(){
 
   const onSelecdish = (data) => {
     setDishSelected(data);
-  };
+  }; 
 
     return(
       <>
       {dishes.map((data) => (
-        <div key={data.id}className="col-12 col-md-5 m-1 menu">
+        <div key={data.id} className="col-12 col-md-5 m-1 menu">
           <Card onClick={() =>{onSelecdish(data)}}>
             <CardImg className="image" src={data.image} alt={data.name} />
             <CardImgOverlay className="nameMenu">

@@ -6,11 +6,12 @@ import Menu from "./Menucomponents";
 import Dishdetail from "./DishdetailComponents";
 import Header from "./Headercomponent";
 import Footer from "./Footercomponent";
+import Contact from "./Contactcomponents";
 import LoginControl from "./Testcomponent";
 import Home from "./Homecomponents";
 import "./App.css";
 
-function Main() {
+function Main() { 
   /* const [dishSelected, setDishSelected] = useState(null); */
 
   /* const HomePage = () => {
@@ -30,13 +31,13 @@ function Main() {
       ))}
       <Dishdetail dish={dishSelected} />
       */}
+
       <Routes>
-        <Route path="/home" element={<Home/>} />
-        <Route
-          path="/menu"
-          element={
-            <Menu />}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/contact" element={<Contact />} />
+        {/* <Route path='/menu/:dishId' element={<Dishdetail />} /> */}
       </Routes>
 
       <Footer />
