@@ -7,37 +7,31 @@ import Dishdetail from "./DishdetailComponents";
 import Header from "./Headercomponent";
 import Footer from "./Footercomponent";
 import Contact from "./Contactcomponents";
-import LoginControl from "./Testcomponent";
 import Home from "./Homecomponents";
 import "./App.css";
+import LoginControl from "./Testcomponent";
 
-function Main() { 
-  /* const [dishSelected, setDishSelected] = useState(null); */
+function Main() {
+  const [dishDetail, setdishDetail] = useState(null);
 
-  /* const HomePage = () => {
-    return <Home />;
-  }; */
-
-  /* const onSelecdish = (data) => {
-    setDishSelected(data);
-  }; */
+  const onSelecdish = (data) => {
+    setdishDetail(data);
+  };
 
   return (
     <>
       <Header />
 
-      {/* {dishes.map((data) => (
-        <Menu renderInfo={onSelecdish} key={data.id} data={data} />
-      ))}
-      <Dishdetail dish={dishSelected} />
-      */}
-
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/contact" element={<Contact />} />
-        {/* <Route path='/menu/:dishId' element={<Dishdetail />} /> */}
+        <Route path="" element={<Home />} />
+
+        <Route path="home" element={<Home />} />
+
+        <Route path="menu" element={<Menu onSelect={onSelecdish} />} />
+
+        <Route path="/menu/:dishId" element={<Dishdetail props={dishDetail} />} />
+
+        <Route path="contact" element={<Contact />} />
       </Routes>
 
       <Footer />

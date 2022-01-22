@@ -1,34 +1,32 @@
 import React, { useState } from "react";
 import { dishes } from "../share/dishes";
-import Dishdetail from "./DishdetailComponents";
-import { Card, CardImg, CardImgOverlay,CardTitle } from "reactstrap";
+import { comments } from "../share/comment";
+import { Card, CardImg, CardImgOverlay, CardTitle} from "reactstrap";
+import { Link } from "react-router-dom";
 
+function Menu({onSelect}) {
+  return (
+    <>
+      <Link to="/home">Home</Link> | <Link to="/menu">Menu</Link>
 
-
-function Menu(){
-  const [dishSelected, setDishSelected] = useState(null);
-
-  const onSelecdish = (data) => {
-    setDishSelected(data);
-  }; 
-
-    return(
-      <>
       {dishes.map((data) => (
-        <div key={data.id} className="col-12 col-md-5 m-1 menu">
-          <Card onClick={() =>{onSelecdish(data)}}>
-            <CardImg className="image" src={data.image} alt={data.name} />
-            <CardImgOverlay className="nameMenu">
-              <CardTitle>{data.name}</CardTitle>
-            </CardImgOverlay>
-          </Card>
-        </div>
-        ))}
-        
-        <Dishdetail dish={dishSelected} />
-
-        </>
-    )
+        <Link to={`/menu/${data.id}`} key={data.id}>
+          <div className="col-12 col-md-5 m-1 menu">
+            <Card
+              onClick={() => {
+                onSelect(data)
+              }}
+            >
+              <CardImg className="image" src={data.image} alt={data.name} />
+              <CardImgOverlay className="nameMenu">
+                <CardTitle>{data.name}</CardTitle>
+              </CardImgOverlay>
+            </Card>
+          </div>
+        </Link>
+      ))}
+    </>
+  );
 }
 
 export default Menu;
