@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { dishes } from "../share/dishes";
+import { comments } from "../share/comment";
 import { Navbar, NavbarBrand } from "reactstrap";
 import Menu from "./Menucomponents";
 import Dishdetail from "./DishdetailComponents";
@@ -29,7 +30,7 @@ function Main() {
 
         <Route path="menu" element={<Menu onSelect={onSelecdish} />} />
 
-        <Route path="/menu/:dishId" element={<Dishdetail props={dishDetail} />} />
+        <Route path="/menu/:dishId" element={<Dishdetail props={dishDetail} comment={comments} />} />
 
         <Route path="contact" element={<Contact />} />
       </Routes>

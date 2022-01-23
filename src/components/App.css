@@ -4,3 +4,30 @@
   list-style: none;
   font-size: 20px;
 }
+.container{
+
+}
+.menu{
+  background-color:black;
+}
+.dish{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+.dishDetail{
+  width:80%;
+  padding-left:100px;
+
+
+}
+.comment{
+  width:80%;
+  padding-left:100px;
+
+
+}
+.footer{
+  background-color:rgb(209, 199, 255);
+}

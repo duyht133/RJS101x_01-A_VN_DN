@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { dishes } from "../share/dishes";
-import { comments } from "../share/comment";
 import { Card, CardImg, CardImgOverlay, CardTitle} from "reactstrap";
 import { Link } from "react-router-dom";
+
 
 function Menu({onSelect}) {
   return (
@@ -11,7 +11,7 @@ function Menu({onSelect}) {
 
       {dishes.map((data) => (
         <Link to={`/menu/${data.id}`} key={data.id}>
-          <div className="col-12 col-md-5 m-1 menu">
+          <div className="col-12 col-md-5 m-1 menu" >
             <Card
               onClick={() => {
                 onSelect(data)

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Contact(props) {
+function Contact() {
   return (
     <div className="container">
       <div className="row row-content">

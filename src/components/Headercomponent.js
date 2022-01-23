@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from "reactstrap";
+import { Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, Jumbotron } from "reactstrap";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
@@ -23,11 +23,11 @@ class Header extends Component {
       <React.Fragment>
         <div>
           <Navbar dark color="primary">
-            <div className="container">
+            <div className="">
               <NavbarToggler onClick={this.toggleNav} />
               <NavbarBrand className="mr-auto" href="/">
                 <img
-                  src="https://media.istockphoto.com/vectors/website-icon-flat-vector-template-design-trendy-vector-id1227037466?k=20&m=1227037466&s=170667a&w=0&h=8nRpeQ5ZKhN4UvYX105LH-Q4gLiK2G9rwsXnniCtArE="
+                  src="https://cdn.thukyluat.vn/nhch-images//CauHoi_Hinh/9eb6abaa-8cda-456c-ad66-26ba4da23ffe.jpg"
                   height="30"
                   width="41"
                   alt="Ristorante Con Fusion"
@@ -51,7 +51,7 @@ class Header extends Component {
                 </NavItem>
                 <NavItem>
                   <Link className="nav-link" to="/contact">
-                    <span className="fa fa-list fa-lg"></span> Contact
+                    <span className="far fa-id-card"></span> Contact
                   </Link>
                 </NavItem>
               </Nav>

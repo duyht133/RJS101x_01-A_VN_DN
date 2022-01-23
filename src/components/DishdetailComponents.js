@@ -7,8 +7,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-function Dishdetail({props}) {
-  console.log(props);
+function Dishdetail({props,comment}) {
 
   const Info = () => {
     if (props != null) {
@@ -16,23 +15,21 @@ function Dishdetail({props}) {
         <div>
           <Card className="dishDetail">
               <CardImg className="imageDish" src={props.image} alt={props.image}></CardImg>
-              <CardImgOverlay className="text">
                 <CardTitle>{props.name}</CardTitle>
                 <CardText>{props.description}</CardText>
-              </CardImgOverlay>
           </Card>
         </div>
       );
     } else return <div></div>;
   };
 
- /*  const Comments = () => {
-    if (com != null) {
+  const Comments = () => {
+    if (comment != null) {
       return (
-        <div className="comMent">
+        <div className="comment">
           <h4>Comments</h4>
           <ul className="list-unstyled">
-            {com.map((e) => {
+            {comment.map((e) => {
               return (
                 <li key={e.id}>
                   <p>comment:{e.comment}</p>
@@ -44,16 +41,16 @@ function Dishdetail({props}) {
         </div>
       );
     } else return <div></div>;
-  }; */
+  };
 
   return (
-    <div>
-      <div>
+      <>
       <Link to="/home">Home</Link> | <Link to="/menu">Menu</Link>
+      <div className="dish">
       <Info />
-      {/* <Comments/> */}
+      <Comments/>
       </div>
-    </div>
+      </>
   );
 }
 
