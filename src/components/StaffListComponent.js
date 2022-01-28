@@ -19,9 +19,9 @@ const StaffListComponent = ({ selectStaff }) => {
               }}
             >
               <CardImg className="image" src={staff.image} alt={staff.name} />
-              <CardImgOverlay className="nameMenu">
-                <CardTitle>{staff.name}</CardTitle>
-              </CardImgOverlay>
+              <div>
+                <div>{staff.name}</div>
+              </div>
             </Card>
           </div>
         </Link>
