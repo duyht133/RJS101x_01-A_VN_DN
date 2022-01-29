@@ -21,41 +21,38 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-          <Navbar dark color="primary">
-            <div className="">
-              <NavbarToggler onClick={this.toggleNav} />
-              <NavbarBrand className="mr-auto" href="/">
+            <div className="header">
+              {/* <NavbarToggler onClick={this.toggleNav} /> */}
+
+              <Link className="nav-link" to="/">
                 <img
-                  src="https://cdn.thukyluat.vn/nhch-images//CauHoi_Hinh/9eb6abaa-8cda-456c-ad66-26ba4da23ffe.jpg"
-                  height="30"
-                  width="41"
-                  alt="Ristorante Con Fusion"
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/39/FreeCodeCamp_logo.png"
+                  height="40"
+                  width="100"
+                  alt="demo"
                 />
-              </NavbarBrand>
-              <Nav navbar>
-                <NavItem>
-                  <Link className="nav-link" to="/">
-                    <span className="fa fa-home fa-lg"></span> Nhân viên
-                  </Link>
-                </NavItem>
+              </Link>
 
-                <NavItem>
-                  <Link className="nav-link" to="/department">
-                    <span className="fa fa-info fa-lg"></span> Phòng ban
-                  </Link>
-                </NavItem>
+              <div className="nav">
+                  <div>
+                    <Link className="nav-link" to="/">
+                      <span className="fas fa-users">Nhân viên</span> 
+                    </Link>
+                  </div>
 
-                <NavItem>
-                  <Link className="nav-link" to="/salary">
-                    <span className="fa fa-list fa-lg"></span> Bảng Lương
-                  </Link>
-                </NavItem>
-               
-              </Nav>
+                  <div>
+                    <Link className="nav-link" to="/department">
+                      <span className="fas fa-address-book">Phòng Ban</span> 
+                    </Link>
+                  </div>
+
+                  <div>
+                    <Link className="nav-link" to="/salary">
+                      <span className="fas fa-money-bill">Bảng Lương</span> 
+                    </Link>
+                  </div>
+              </div>
             </div>
-          </Navbar>
-        </div>
       </React.Fragment>
     );
   }

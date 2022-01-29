@@ -12,16 +12,16 @@ const Salary = () => {
     <div>
       <Link to="/">Nhân Viên</Link> | Bảng Lương
       {STAFFS.map((staff) => (
-        <div className="col-12 col-md-5 m-1">
+        <div className="salary" key={staff.id}>
           <div>
             <h1>{staff.name}</h1>
-            <div> Mã Nhân Viên: {staff.id}</div>
-            <div> Hệ Số Lương: {staff.salaryScale}</div>
-            <div> Số giờ làm thêm: {staff.overTime}</div>
+            <p> Mã Nhân Viên: {staff.id}</p>
+            <p> Hệ Số Lương: {staff.salaryScale}</p>
+            <p> Số giờ làm thêm: {staff.overTime}</p>
 
             <br />
 
-            <div>Lương: {staff.salaryScale * basicSalary + staff.overTime * overTimeSalary}</div>
+            <p>Lương: {staff.salaryScale * basicSalary + staff.overTime * overTimeSalary}</p>
           </div>
           <br />
         </div>
