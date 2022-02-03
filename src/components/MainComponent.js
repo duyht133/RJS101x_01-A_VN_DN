@@ -29,7 +29,10 @@ const MainComponent = () => {
 
       </Routes>
 
+      <div>
+
       <Footercomponent />
+      </div>
     </div>
   );
 };

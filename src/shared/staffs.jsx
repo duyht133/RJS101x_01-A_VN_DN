@@ -187,16 +187,5 @@ export const STAFFS =
             overTime: 10,
             image: 'https://www.cse.ust.hk/~muppala/img/muppala.jpg',
         },
-        {
-            id: 14,
-            name: "Nguyễn Văn F",
-            doB: "2003-01-01T08:59:00.000Z",
-            salaryScale: 1,
-            startDate: "2019-04-30T08:59:00.000Z",
-            department: DEPARTMENTS[4],
-            annualLeave: 9,
-            overTime: 10,
-            image: 'https://www.cse.ust.hk/~muppala/img/muppala.jpg',
-        },
         
     ]

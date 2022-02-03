@@ -7,11 +7,9 @@
 }
 
 .department{
-  color:white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  float: left;
+  margin: 70px;
 }
 .header{
   display: flex;
@@ -29,4 +27,20 @@
 }
 .nav-link span:hover{
   color:rgb(255, 255, 255);
+}
+.staff{
+  /* display: flex; */
+  display: block;
+  float: left;
+  margin-right: 50px;
+  padding-top: 50px;
+  justify-content: center;
+}
+.img{
+  width: 200px;
+  height: 300px;
+}
+.salary{
+  display: flex;                  
+  flex-direction: row;
 }

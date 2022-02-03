@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { STAFFS } from "../shared/staffs";
-import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
 
 const Salary = () => {
   const basicSalary = 3000000;
@@ -12,8 +11,8 @@ const Salary = () => {
     <div>
       <Link to="/">Nhân Viên</Link> | Bảng Lương
       {STAFFS.map((staff) => (
-        <div className="salary" key={staff.id}>
-          <div>
+        <div className="salary "  key={staff.id}>
+          <div >
             <h1>{staff.name}</h1>
             <p> Mã Nhân Viên: {staff.id}</p>
             <p> Hệ Số Lương: {staff.salaryScale}</p>
@@ -23,7 +22,7 @@ const Salary = () => {
 
             <p>Lương: {staff.salaryScale * basicSalary + staff.overTime * overTimeSalary}</p>
           </div>
-          <br />
+          <div></div>
         </div>
       ))}
     </div>

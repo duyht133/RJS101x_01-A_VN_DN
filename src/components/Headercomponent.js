@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, div } from "reactstrap";
 import { Link } from "react-router-dom";
 
 class Header extends Component {

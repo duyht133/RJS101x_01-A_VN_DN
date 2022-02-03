@@ -5,8 +5,8 @@ function Footer() {
   return (
     <div className="footer">
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-7 col-sm-5">
+        <div className="col-12 col-sm-3">
+          <div >
             <h5>Our Address</h5>
             <address>
               121, Clear Water Bay Road
@@ -23,7 +23,7 @@ function Footer() {
               <a href="mailto:confusion@food.net">confusion@food.net</a>
             </address>
           </div>
-          <div className="col-12 col-sm-4 align-self-center">
+          {/* <div className="col-12 col-sm-4 align-self-center">
             <div className="text-center">
               <a className="btn btn-social-icon btn-google" href="http://google.com/+">
                 <i className="fa fa-google-plus"></i>
@@ -47,10 +47,9 @@ function Footer() {
                 <i className="fa fa-envelope-o"></i>
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="row justify-content-center"></div>
     </div>
   );
 }

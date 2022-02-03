@@ -5,9 +5,9 @@ const RenderDish = ({staff}) => {
     const Render = () =>{
         if (staff != null) {
             return (
-              <div>
+              <div className="render">
                 <img className="image" src={staff.image} alt={staff.name} />
-                <div key={staff.id} className="render">
+                <div key={staff.id} >
                   Họ và tên: {staff.name}
                   <br />
                   Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}
