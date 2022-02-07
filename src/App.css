@@ -3,44 +3,54 @@
   margin: 0;
   list-style: none;
   font-size: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-.department{
-  display: block;
-  float: left;
-  margin: 70px;
-}
-.header{
+.header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color:rgba(0, 47, 78,0.65);
-}
-.nav{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.nav-link span{
-  color:rgb(146, 250, 250);
-}
-.nav-link span:hover{
-  color:rgb(255, 255, 255);
-}
-.staff{
-  /* display: flex; */
-  display: block;
-  float: left;
-  margin-right: 50px;
-  padding-top: 50px;
+  background-color: rgba(0, 47, 78, 0.65);
   justify-content: center;
 }
-.img{
-  width: 200px;
+.footer {
+  margin-top:50px;
+  background-color: #0acbf1;
+}
+
+.nav-link span {
+  color: rgb(146, 250, 250);
+}
+.nav-link span:hover {
+  color: rgb(255, 255, 255);
+}
+
+.img {
+  width: 100%;
   height: 300px;
 }
-.salary{
-  display: flex;                  
-  flex-direction: row;
+.dish{
+  display: flex;
+}
+.dish img{
+  width: 100%;
+}
+.infoDish{
+  margin: 20px;
+  background-color: antiquewhite;
+  width: 100%;
+  text-align: center;
+}
+.department{
+  margin-bottom: 200px;
+}
+
+@media screen and (max-width: 770px) { 
+  .dish{
+    display: block;
+  }
+  .footer {
+    margin-top:100px;
+    background-color: #0acbf1;
+  }
 }

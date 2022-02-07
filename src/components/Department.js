@@ -1,20 +1,25 @@
 import React from "react";
 import { DEPARTMENTS } from "../shared/staffs";
+import { Link } from "react-router-dom";
+import "../App.css"
 
 const Department = () => {
   const Render = () => {
     return DEPARTMENTS.map((num) => (
-      <div className="department">
-        <div  key={num.id}>
+      <div className="col-lg-4 col-md-6 col-sm-12 department"  key={num.id}>
+        <div>
           <h1>{num.name}</h1>
-          <div>số lượng nhân viên: {num.numberOfStaff}</div>
+          <p>số lượng nhân viên: {num.numberOfStaff}</p>
         </div>
       </div>
     ));
   };
   return (
-    <div>
+    <div className="container ">
+        <Link to="/">Nhân Viên</Link> | Phòng Ban
+      <div className="row  ">
       <Render />
+      </div>
     </div>
   );
 };

@@ -3,30 +3,29 @@ import { STAFFS } from "../shared/staffs";
 import { Link } from "react-router-dom";
 
 const StaffListComponent = ({ selectStaff }) => {
-
-  const Render = () =>(
-    STAFFS.map((staff) => (
-      <Link to={`/staff/${staff.id}`} key={staff.id}>
-        <div className="staff">
+  const Render = () => {
+    return STAFFS.map((staff) => (
+      <div className="col-lg-2 col-md-4 col-sm-6" key={staff.id}>
+        <Link to={`/staff/${staff.id}`} >
           <div
             onClick={() => {
               selectStaff(staff);
             }}
           >
-            
-              <img className="img" src={staff.image} alt={staff.name} />
-              <div>{staff.name}</div>
-            
+            <img className="img" src={staff.image} alt={staff.name} />
+            <div>{staff.name}</div>
           </div>
-        </div>
-      </Link>
-    ))
-  )
+        </Link>
+      </div>
+    ));
+  };
 
   return (
-    <div>
-      <h1>Nhân Viên</h1>
-      <Render/>
+    <div className="container">
+      <h1 className="text-center">Nhân Viên</h1>
+      <div className="row">
+        <Render />
+      </div>
     </div>
   );
 };
