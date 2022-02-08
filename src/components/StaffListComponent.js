@@ -1,6 +1,8 @@
 import React from "react";
 import { STAFFS } from "../shared/staffs";
 import { Link } from "react-router-dom";
+import "../App.css"
+
 
 const StaffListComponent = ({ selectStaff }) => {
   const Render = () => {
@@ -13,7 +15,7 @@ const StaffListComponent = ({ selectStaff }) => {
             }}
           >
             <img className="img" src={staff.image} alt={staff.name} />
-            <div>{staff.name}</div>
+            <div className="name">{staff.name}</div>
           </div>
         </Link>
       </div>

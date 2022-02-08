@@ -5,7 +5,11 @@
   font-size: 20px;
   font-family: "Roboto", sans-serif;
 }
-
+.name{
+  color:black;
+  text-decoration: none;
+  text-align: center;
+}
 .header {
   display: flex;
   flex-direction: row;
@@ -31,26 +35,54 @@
 }
 .dish{
   display: flex;
+  margin-bottom: 87px;
+
 }
 .dish img{
   width: 100%;
 }
 .infoDish{
-  margin: 20px;
-  background-color: antiquewhite;
   width: 100%;
   text-align: center;
 }
 .department{
-  margin-bottom: 200px;
+  background-color:rgb(166, 218, 166);
+  margin-bottom: 140px;
+  text-align: center;
+}
+.salary{
+  background-color:rgb(166, 218, 166);
 }
 
-@media screen and (max-width: 770px) { 
+
+@media screen and (max-width: 990px) { 
+  .department{
+    margin-bottom: 90px;
+  }
+  .dish{
+    margin-bottom: 210px;
+  }
+}
+
+
+@media screen and (max-width: 769px) { 
   .dish{
     display: block;
+    margin-bottom: 23px;
+
   }
   .footer {
     margin-top:100px;
     background-color: #0acbf1;
+  }
+  .salary{
+    background-color:rgb(166, 218, 166);
+    color: rgb(66, 96, 180);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .department{
+    margin-bottom: 23px;
   }
 }

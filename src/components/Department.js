@@ -6,8 +6,8 @@ import "../App.css"
 const Department = () => {
   const Render = () => {
     return DEPARTMENTS.map((num) => (
-      <div className="col-lg-4 col-md-6 col-sm-12 department"  key={num.id}>
-        <div>
+      <div className="col-lg-4 col-md-6 col-sm-12 "  key={num.id}>
+        <div className="department">
           <h1>{num.name}</h1>
           <p>số lượng nhân viên: {num.numberOfStaff}</p>
         </div>
