@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Col, Input } from "reactstrap";
+import { Form, FormGroup, Label, Col, Input, } from "reactstrap";
+import Select from 'react-select' // import react-select để dùng Select.
 
 function Contact() {
   const [firtName, setFirtname] = useState("");
@@ -10,6 +11,12 @@ function Contact() {
   const [contactType, setContactType] = useState("Tel.");
   const [message, setMessage] = useState("");
 
+/// tạo biến option để dùng làm giá trị Select
+  const options = [
+    { value: contactType, label: contactType },
+    { value: email, label: email }
+  ];
+  
   const handleSubmit = () =>{
     console.log(firtName,lastName,telNum,email,agree,contactType,message)
 }
@@ -54,21 +61,14 @@ function Contact() {
           </div>
         </div>
       </div>
-      <div className="row row-content">
+
+
+
+      <div className="row row-content mb-5">
         <div className="col-12">
           <h3>Send us Your feedback</h3>
         </div>
         <div className="col-12 col-md-9">
-          {/* <Form>
-            <FormGroup row>
-              <Label for="firtname" md={2}>
-                Firt Name
-              </Label>
-              <Col md={10}>
-               <Input/>
-              </Col>
-            </FormGroup>
-          </Form> */}
           <label>
             Firtname:
             <input
@@ -130,7 +130,7 @@ function Contact() {
             </Col>
 
             <Col md={{ size: 3, offset: 1 }}>
-              <Input
+             {/*  <Input
                 type="select"
                 name="contactType"
                 value={contactType}
@@ -138,7 +138,8 @@ function Contact() {
               >
                 <option>Tel.</option>
                 <option>Email</option>
-              </Input>
+              </Input> */}
+               <Select options={options}   onChange={() => setContactType(email)}/>
             </Col>
           </FormGroup>
 
@@ -157,6 +158,7 @@ function Contact() {
           <input type="submit" value="Submit" onClick={handleSubmit} />
         </div>
       </div>
+
     </div>
   );
 }
