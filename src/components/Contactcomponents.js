@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Col, Input, } from "reactstrap";
-import Select from 'react-select' // import react-select để dùng Select.
+import { Form, FormGroup, Label, Col, Input, FormFeedback } from "reactstrap";
+import Select from "react-select"; // import react-select để dùng Select.
 
 function Contact() {
   const [firtName, setFirtname] = useState("");
@@ -11,15 +11,43 @@ function Contact() {
   const [contactType, setContactType] = useState("Tel.");
   const [message, setMessage] = useState("");
 
-/// tạo biến option để dùng làm giá trị Select
+  /// tạo biến option để dùng làm giá trị Select
   const options = [
     { value: contactType, label: contactType },
-    { value: email, label: email }
+    { value: email, label: email },
   ];
+
+  const handleSubmit = () => {
+    console.log(firtName, lastName, telNum, email, agree, contactType, message);
+  };
+
   
-  const handleSubmit = () =>{
-    console.log(firtName,lastName,telNum,email,agree,contactType,message)
-}
+  const HandleBlurFirtName = () => {
+    if (firtName.length < 3 && firtName.length > 0) {
+      return <div>Tên phải lớn hơn 3</div>;
+    } else if (firtName.length > 10) {
+      return <div>Tên phải nhỏ hơn 10</div>;
+    }
+  };
+  const HandleBlurlastName = () => {
+    if (lastName.length < 2 && lastName.length > 0) {
+      return <div>họ phải lớn hơn 3</div>;
+    } else if (lastName.length > 10) {
+      return <div>họ phải lớn hơn</div>;
+    }
+  };
+  const HandleBlurTelNum = () => {
+    if (telNum.length < 11 && telNum.length > 0 && isNaN(telNum)) {
+      return <div>không được có chữ</div>;
+    } else if (telNum.length > 13 && isNaN(telNum)) {
+      return <div>số phải nhỏ hơn 13 và không có chữ</div>;
+    }
+  };
+  const HandleBlurEmail = () => {
+    if (email.length > 8 && email.split('').filter(x => x ==="@").length !==1) {
+      return <div>mail phải có @</div>;
+    }
+  };
 
   return (
     <div className="container">
@@ -61,9 +89,7 @@ function Contact() {
           </div>
         </div>
       </div>
-
-
-
+{/* /////////////////////////// */}
       <div className="row row-content mb-5">
         <div className="col-12">
           <h3>Send us Your feedback</h3>
@@ -77,7 +103,9 @@ function Contact() {
               name="name"
               placeholder="Firt Name"
               onChange={(event) => setFirtname(event.target.value)}
+              onBlur={HandleBlurFirtName}
             />
+            <div className="color">{HandleBlurFirtName()}</div>
           </label>
           <br />
           <label>
@@ -88,7 +116,9 @@ function Contact() {
               name="name"
               placeholder="Last Name"
               onChange={(event) => setLastname(event.target.value)}
+              onBlur={HandleBlurlastName}
             />
+            <div className="color">{HandleBlurlastName()}</div>
           </label>
           <br />
           <label>
@@ -99,7 +129,9 @@ function Contact() {
               name="name"
               placeholder="Tel Number"
               onChange={(event) => setTelnum(event.target.value)}
+              onBlur={HandleBlurTelNum}
             />
+            <div className="color">{HandleBlurTelNum()}</div>
           </label>
           <br />
           <label>
@@ -107,10 +139,12 @@ function Contact() {
             <input
               type="text"
               value={email}
-              name="name"
+              name="email"
               placeholder="Email"
               onChange={(event) => setEmail(event.target.value)}
+              onBlur={HandleBlurEmail}
             />
+            <div className="color">{HandleBlurEmail()}</div>
           </label>
 
           <FormGroup row>
@@ -130,7 +164,7 @@ function Contact() {
             </Col>
 
             <Col md={{ size: 3, offset: 1 }}>
-             {/*  <Input
+              {/*  <Input
                 type="select"
                 name="contactType"
                 value={contactType}
@@ -139,7 +173,8 @@ function Contact() {
                 <option>Tel.</option>
                 <option>Email</option>
               </Input> */}
-               <Select options={options}   onChange={() => setContactType(email)}/>
+
+              <Select options={options} onChange={() => setContactType(email)} />
             </Col>
           </FormGroup>
 
@@ -154,11 +189,10 @@ function Contact() {
               onChange={(event) => setMessage(event.target.value)}
             />
           </label>
-          <br/>
+          <br />
           <input type="submit" value="Submit" onClick={handleSubmit} />
         </div>
       </div>
-
     </div>
   );
 }
