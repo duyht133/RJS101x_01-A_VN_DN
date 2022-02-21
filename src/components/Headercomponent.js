@@ -1,76 +1,105 @@
-import React, { Component } from "react";
-import { Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, Jumbotron } from "reactstrap";
+import React, { Component, useState } from "react";
+import {
+  Nav,
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
+  NavItem,
+  Jumbotron,
+  Modal,
+  ModalHeader,
+} from "reactstrap";
 import { Link } from "react-router-dom";
+import "./App.css";
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-
-    this.toggleNav = this.toggleNav.bind(this);
-    this.state = {
+/* this.state = {
       isNavOpen: false,
     };
-  }
+    this.toggleNav = this.toggleNav.bind(this); */
 
-  toggleNav() {
-    this.setState({
-      isNavOpen: !this.state.isNavOpen,
-    });
-  }
+function Header() {
+  const [state, setState] = useState(false);
 
-  render() {
-    return (
-      <React.Fragment>
-        <div>
-          <Navbar dark color="primary">
-            <div className="">
-              <NavbarToggler onClick={this.toggleNav} />
-              <NavbarBrand className="mr-auto" href="/">
-                <img
-                  src="https://cdn.thukyluat.vn/nhch-images//CauHoi_Hinh/9eb6abaa-8cda-456c-ad66-26ba4da23ffe.jpg"
-                  height="30"
-                  width="41"
-                  alt="Ristorante Con Fusion"
-                />
-              </NavbarBrand>
-              <Nav navbar>
-                <NavItem>
-                  <Link className="nav-link" to="/home">
-                    <span className="fa fa-home fa-lg"></span> Home
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link className="nav-link" to="/aboutus">
-                    <span className="fa fa-info fa-lg"></span> About Us
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link className="nav-link" to="/menu">
-                    <span className="fa fa-list fa-lg"></span> Menu
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link className="nav-link" to="/contact">
-                    <span className="far fa-id-card"></span> Contact
-                  </Link>
-                </NavItem>
-              </Nav>
-            </div>
-          </Navbar>
+  const toggleNav = () => {
+    console.log(state);
+    setState(!state);
+  };
+
+  const Render = () => {
+    if (state !== false) {
+      return (
+        <div className="toggle">
+          <Link className="nav-link" to="/home">
+            <span className="fa fa-home fa-lg"></span> Home
+          </Link>
+
+          <Link className="nav-link" to="/aboutus">
+            <span className="fa fa-info fa-lg"></span> About Us
+          </Link>
+
+          <Link className="nav-link" to="/menu">
+            <span className="fa fa-list fa-lg"></span> Menu
+          </Link>
+
+          <Link className="nav-link" to="/contact">
+            <span className="far fa-id-card"></span> Contact
+          </Link>
         </div>
+      );
+    } else {
+      return <div></div>;
+    }
+  };
 
-        <Jumbotron>
-          <div className="container">
-            <div className="row row-header">
-              <div className="col-12 col-sm-6">
-                <h1>Ristonrate con funsion</h1>
-                <p>quan an nha hang tiec cuoi sang trong</p>
-              </div>
+  return (
+    <div>
+      <div className="Navbar">
+        <button className="nav-toggle" onClick={toggleNav} >
+          <p>Toggle</p>
+        </button>
+        <Link to="/home">
+          <img
+            className="Logo"
+            src="https://backlinks.vn/digital-marketing-logo/imager_98186.jpg"
+            alt="Ristorante Con Fusion"
+          />
+        </Link>
+
+        <div className="nav">
+          <Link className="nav-link" to="/home">
+            <span className="fa fa-home fa-lg"></span> Home
+          </Link>
+
+          <Link className="nav-link" to="/aboutus">
+            <span className="fa fa-info fa-lg"></span> About Us
+          </Link>
+
+          <Link className="nav-link" to="/menu">
+            <span className="fa fa-list fa-lg"></span> Menu
+          </Link>
+
+          <Link className="nav-link" to="/contact">
+            <span className="far fa-id-card"></span> Contact
+          </Link>
+        </div>
+      </div>
+      <Render />
+
+      <Jumbotron>
+        <div className="container">
+          <div className="row row-header">
+            <div className="col-12 col-sm-6">
+              <h1>Ristonrate con funsion</h1>
+              <p>quan an nha hang tiec cuoi sang trong</p>
             </div>
           </div>
-        </Jumbotron>
-      </React.Fragment>
-    );
-  }
+        </div>
+      </Jumbotron>
+      <Modal>
+        <ModalHeader>Login</ModalHeader>
+      </Modal>
+    </div>
+  );
 }
+
 export default Header;

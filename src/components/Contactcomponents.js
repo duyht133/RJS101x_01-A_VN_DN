@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Col, Input, FormFeedback } from "reactstrap";
-import Select from "react-select"; // import react-select để dùng Select.
+import Select from "react-select"; // import react-select để dùng FormSelect.
 
 function Contact() {
   const [firtName, setFirtname] = useState("");
@@ -17,11 +17,12 @@ function Contact() {
     { value: email, label: email },
   ];
 
+  /// hàm nhận sự kiện submit
   const handleSubmit = () => {
     console.log(firtName, lastName, telNum, email, agree, contactType, message);
   };
 
-  
+  /// các hàm sử lý điều kiện nhập
   const HandleBlurFirtName = () => {
     if (firtName.length < 3 && firtName.length > 0) {
       return <div>Tên phải lớn hơn 3</div>;
@@ -40,7 +41,7 @@ function Contact() {
     if (telNum.length < 11 && telNum.length > 0 && isNaN(telNum)) {
       return <div>không được có chữ</div>;
     } else if (telNum.length > 13 && isNaN(telNum)) {
-      return <div>số phải nhỏ hơn 13 và không có chữ</div>;
+      return <div>số phải nhỏ hơn 13</div>;
     }
   };
   const HandleBlurEmail = () => {
