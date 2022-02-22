@@ -62,7 +62,13 @@
   display: block;
   background-color:#358dc3;
 }
+.loginToggle{
+  background-color:white;
 
+}
+span{
+  color:white;
+}
 @media (min-width: 768px) {
   .nav-toggle {
     display: none;

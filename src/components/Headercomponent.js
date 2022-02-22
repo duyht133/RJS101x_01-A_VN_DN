@@ -8,6 +8,12 @@ import {
   Jumbotron,
   Modal,
   ModalHeader,
+  Button,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./App.css";
@@ -19,12 +25,18 @@ import "./App.css";
 
 function Header() {
   const [state, setState] = useState(false);
+  const [modal, setModal] = useState(false);
 
   const toggleNav = () => {
-    console.log(state);
+    console.log(">>state", state);
     setState(!state);
   };
+  const toggleModal = () => {
+    console.log(">>modal", modal);
+    setModal(!modal);
+  };
 
+  /////////
   const Render = () => {
     if (state !== false) {
       return (
@@ -51,10 +63,45 @@ function Header() {
     }
   };
 
+  ///////
+  const Modal = () => {
+    if (modal !== false) {
+      return (
+        <ModalHeader>
+          <ModalBody>
+            <div>
+              <FormGroup>
+                <Label htmlFor="username">Username</Label>
+                <Input type="text" name="username" id="username" />
+              </FormGroup>
+
+              <FormGroup>
+                <Label htmlFor="Password">Password</Label>
+                <Input type="text" name="Password" id="Password" />
+              </FormGroup>
+
+              <FormGroup>
+                <Label check>
+                  <Input type="checkbox" name="remember"/>
+                  Remember Me
+                </Label>
+              </FormGroup>
+              <Button type="submit" value="submit" color="primary">Login</Button>
+            </div>
+          </ModalBody>
+        </ModalHeader>
+      );
+    } else {
+      return <div></div>;
+    }
+  };
+
+
+  /////
   return (
     <div>
       <div className="Navbar">
-        <button className="nav-toggle" onClick={toggleNav} >
+        <button className="nav-toggle" onClick={toggleNav}>
           <p>Toggle</p>
         </button>
         <Link to="/home">
@@ -81,6 +128,14 @@ function Header() {
           <Link className="nav-link" to="/contact">
             <span className="far fa-id-card"></span> Contact
           </Link>
+
+          <Nav className="ml-auto " navbar>
+            <NavItem>
+              <Button outline onClick={toggleModal} className="loginToggle">
+                <span className="fa fa-sign-in fa-lg login"></span> Login
+              </Button>
+            </NavItem>
+          </Nav>
         </div>
       </div>
       <Render />
@@ -95,9 +150,8 @@ function Header() {
           </div>
         </div>
       </Jumbotron>
-      <Modal>
-        <ModalHeader>Login</ModalHeader>
-      </Modal>
+      
+      <Modal/>
     </div>
   );
 }
