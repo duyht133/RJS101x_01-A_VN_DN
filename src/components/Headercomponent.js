@@ -14,18 +14,19 @@ import {
   FormGroup,
   Label,
   Input,
+  ModalFooter,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./App.css";
 
-/* this.state = {
-      isNavOpen: false,
-    };
-    this.toggleNav = this.toggleNav.bind(this); */
-
 function Header() {
   const [state, setState] = useState(false);
   const [modal, setModal] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const toggleNav = () => {
     console.log(">>state", state);
@@ -63,13 +64,14 @@ function Header() {
     }
   };
 
-  ///////
-  const Modal = () => {
+  /* render modal */
+  /* const ModalRender = () => {
     if (modal !== false) {
+      console.log("acces");
       return (
-        <ModalHeader>
-          <ModalBody>
-            <div>
+        <div show={modal} onHide={toggleModal}>
+          <div>
+            <ModalBody>
               <FormGroup>
                 <Label htmlFor="username">Username</Label>
                 <Input type="text" name="username" id="username" />
@@ -82,20 +84,21 @@ function Header() {
 
               <FormGroup>
                 <Label check>
-                  <Input type="checkbox" name="remember"/>
+                  <Input type="checkbox" name="remember" />
                   Remember Me
                 </Label>
               </FormGroup>
-              <Button type="submit" value="submit" color="primary">Login</Button>
-            </div>
-          </ModalBody>
-        </ModalHeader>
+              <Button type="submit" value="submit" color="primary">
+                Login
+              </Button>
+            </ModalBody>
+          </div>
+        </div>
       );
     } else {
       return <div></div>;
     }
-  };
-
+  }; */
 
   /////
   return (
@@ -140,6 +143,37 @@ function Header() {
       </div>
       <Render />
 
+
+      {/* <ModalRender /> đây là modal */}
+
+
+
+{/* test ở đây */}
+      {
+        <div>
+          <Button
+            color="primary"
+            onClick={function noRefCheck() {
+              console.log("haha");
+            }}
+          >
+            Click Me
+          </Button>
+          <Modal toggle={function noRefCheck() {}}>
+            <ModalHeader toggle={function noRefCheck() {}}>Modal title</ModalHeader>
+            <ModalBody>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={function noRefCheck() {}}>
+                Do Something
+              </Button>{" "}
+              <Button onClick={function noRefCheck() {}}>Cancel</Button>
+            </ModalFooter>
+          </Modal>
+        </div>
+      }
+
       <Jumbotron>
         <div className="container">
           <div className="row row-header">
@@ -150,8 +184,6 @@ function Header() {
           </div>
         </div>
       </Jumbotron>
-      
-      <Modal/>
     </div>
   );
 }
