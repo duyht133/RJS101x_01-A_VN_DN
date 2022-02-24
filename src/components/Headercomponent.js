@@ -23,11 +23,6 @@ function Header() {
   const [state, setState] = useState(false);
   const [modal, setModal] = useState(false);
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const toggleNav = () => {
     console.log(">>state", state);
     setState(!state);
@@ -63,42 +58,6 @@ function Header() {
       return <div></div>;
     }
   };
-
-  /* render modal */
-  /* const ModalRender = () => {
-    if (modal !== false) {
-      console.log("acces");
-      return (
-        <div show={modal} onHide={toggleModal}>
-          <div>
-            <ModalBody>
-              <FormGroup>
-                <Label htmlFor="username">Username</Label>
-                <Input type="text" name="username" id="username" />
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="Password">Password</Label>
-                <Input type="text" name="Password" id="Password" />
-              </FormGroup>
-
-              <FormGroup>
-                <Label check>
-                  <Input type="checkbox" name="remember" />
-                  Remember Me
-                </Label>
-              </FormGroup>
-              <Button type="submit" value="submit" color="primary">
-                Login
-              </Button>
-            </ModalBody>
-          </div>
-        </div>
-      );
-    } else {
-      return <div></div>;
-    }
-  }; */
 
   /////
   return (
@@ -143,37 +102,32 @@ function Header() {
       </div>
       <Render />
 
+      {/* render modal */}
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <ModalBody>
+          <FormGroup>
+            <Label htmlFor="username">Username</Label>
+            <Input type="text" name="username" id="username" />
+          </FormGroup>
 
-      {/* <ModalRender /> đây là modal */}
+          <FormGroup>
+            <Label htmlFor="Password">Password</Label>
+            <Input type="text" name="Password" id="Password" />
+          </FormGroup>
 
-
-
-{/* test ở đây */}
-      {
-        <div>
-          <Button
-            color="primary"
-            onClick={function noRefCheck() {
-              console.log("haha");
-            }}
-          >
-            Click Me
+          <FormGroup>
+            <Label check>
+              <Input type="checkbox" name="remember" />
+              Remember Me
+            </Label>
+          </FormGroup>
+          <Button type="submit" value="submit" color="primary">
+            Login
           </Button>
-          <Modal toggle={function noRefCheck() {}}>
-            <ModalHeader toggle={function noRefCheck() {}}>Modal title</ModalHeader>
-            <ModalBody>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={function noRefCheck() {}}>
-                Do Something
-              </Button>{" "}
-              <Button onClick={function noRefCheck() {}}>Cancel</Button>
-            </ModalFooter>
-          </Modal>
-        </div>
-      }
+        </ModalBody>
+      </Modal>
 
+      {/* Banner */}
       <Jumbotron>
         <div className="container">
           <div className="row row-header">
