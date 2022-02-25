@@ -63,8 +63,11 @@
   background-color:#358dc3;
 }
 .loginToggle{
-  background-color:white;
+  color:white;
 
+}
+.login{
+  color:white;
 }
 span{
   color:white;

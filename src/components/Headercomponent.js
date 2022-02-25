@@ -121,7 +121,7 @@ function Header() {
               Remember Me
             </Label>
           </FormGroup>
-          <Button type="submit" value="submit" color="primary">
+          <Button type="submit" value="submit" color="primary" onClick={toggleModal}>
             Login
           </Button>
         </ModalBody>
