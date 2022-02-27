@@ -28,8 +28,8 @@ function Header() {
     setState(!state);
   };
   const toggleModal = () => {
-    console.log(">>modal", modal);
     setModal(!modal);
+    console.log(">>modal", !modal);
   };
 
   /////////

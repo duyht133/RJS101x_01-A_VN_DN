@@ -1,35 +1,42 @@
 import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
-import { leaders } from "../share/leaders";
-import { promotions } from "../share/promotions";
-import { dishes } from "../share/dishes";
+import { useSelector } from "react-redux";   /* hook selecTor dùng để get dữ liệu từ store Redux */
+/* import { leaders } from "../share/leaders"; */
+/* import { promotions } from "../share/promotions"; */
+/* import { dishes } from "../share/dishes"; */
+
+// sử dụng state của redux thay vì import trực tiếp
+import { dishes,promotions,leaders } from "../redux/selector";
+
 
 
 function RenderCard1() {
+  // dùng state redux tại đây
+  const datadishes = useSelector(dishes)
   return (
-    <>
-      {/* {dishes.map((e) => ( */}
-        <div>
-          <Card key={dishes[0].id}>
-            <CardImg src={dishes[0].image} alt={dishes[0].name} />
-            <CardBody>
-              <CardTitle>{dishes[0].name}</CardTitle>
-              {dishes[0].designation ? <CardSubtitle>{dishes[0].designation}</CardSubtitle> : null}
-              <CardText>{dishes[0].description}</CardText>
-            </CardBody>
-          </Card>
-        </div>
-      {/* ))} */}
-    </>
+    <div>
+      <div>
+        <Card key={datadishes[0].id}>
+          <CardImg src={datadishes[0].image} alt={datadishes[0].name} />
+          <CardBody>
+            <CardTitle>{datadishes[0].name}</CardTitle>
+            {datadishes[0].designation ? <CardSubtitle>{datadishes[0].designation}</CardSubtitle> : null}
+            <CardText>{datadishes[0].description}</CardText>
+          </CardBody>
+        </Card>
+      </div>
+    </div>
   );
 }
 
 function RenderCard2() {
+  // dùng state redux tại đây
+  const datapromotions = useSelector(promotions)
   return (
     <div>
-      {promotions.map((e) => (
-        <div>
-          <Card key={e.id}>
+      {datapromotions.map((e) => (
+        <div key={e.id}>
+          <Card >
             <CardImg src={e.image} alt={e.name} />
             <CardBody>
               <CardTitle>{e.name}</CardTitle>
@@ -44,20 +51,21 @@ function RenderCard2() {
 }
 
 function RenderCard3() {
+  // dùng state redux tại đây
+  const datapleaders = useSelector(leaders)
+
   return (
     <div>
-      {/* {leaders.map((e) => ( */}
-        <div>
-          <Card key={leaders[3].id}>
-            <CardImg src={leaders[3].image} alt={leaders[3].name} />
-            <CardBody>
-              <CardTitle>{leaders[3].name}</CardTitle>
-              {leaders[3].designation ? <CardSubtitle>{leaders[3].designation}</CardSubtitle> : null}
-              <CardText>{leaders[3].description}</CardText>
-            </CardBody>
-          </Card>
-        </div>
-      {/* ))} */}
+      <div>
+        <Card key={datapleaders[3].id}>
+          <CardImg src={datapleaders[3].image} alt={datapleaders[3].name} />
+          <CardBody>
+            <CardTitle>{datapleaders[3].name}</CardTitle>
+            {datapleaders[3].designation ? <CardSubtitle>{datapleaders[3].designation}</CardSubtitle> : null}
+            <CardText>{datapleaders[3].description}</CardText>
+          </CardBody>
+        </Card>
+      </div>
     </div>
   );
 }
