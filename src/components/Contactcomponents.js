@@ -1,25 +1,43 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Col, Input, FormFeedback } from "reactstrap";
+import { FormGroup, Label, Col, Input, FormFeedback } from "reactstrap";
 import Select from "react-select"; // import react-select để dùng FormSelect.
+import { Form } from "redux-form";
+
+import {
+  useSelector,
+  useDispatch,
+} from "react-redux"; /* hook selecTor dùng để get dữ liệu từ store Redux */
+import { contact } from "../redux/selector"; // import selector function
+import { setStatecontact } from "../redux/reducer";
+/* import { contactAction } from "../redux/actions"; */
 
 function Contact() {
+  // get data in store
+  const dataContact = useSelector(contact);
+  // Dispatch data to store
+  const dispatch = useDispatch();
+
   const [firtName, setFirtname] = useState("");
   const [lastName, setLastname] = useState("");
   const [telNum, setTelnum] = useState("");
   const [email, setEmail] = useState("");
-  const [agree, setAgree] = useState(false);
   const [contactType, setContactType] = useState("Tel.");
   const [message, setMessage] = useState("");
-
-  /// tạo biến option để dùng làm giá trị Select
-  const options = [
-    { value: contactType, label: contactType },
-    { value: email, label: email },
-  ];
+  const [agree, setAgree] = useState(false);
 
   /// hàm nhận sự kiện submit
   const handleSubmit = () => {
-    console.log(firtName, lastName, telNum, email, agree, contactType, message);
+    const stateContact = {
+      firtName:firtName,
+      /* lastName:lastName,
+      telNum:telNum,
+      email:email,
+      contactType:contactType,
+      message:message,
+      agree:agree, */
+    }
+    console.log(dataContact.firtName)
+    dispatch(setStatecontact("firtName"||firtName)) /// Lỗi tại đây, không dispatch được
   };
 
   /// các hàm sử lý điều kiện nhập
@@ -45,10 +63,16 @@ function Contact() {
     }
   };
   const HandleBlurEmail = () => {
-    if (email.length > 8 && email.split('').filter(x => x ==="@").length !==1) {
+    if (email.length > 8 && email.split("").filter((x) => x === "@").length !== 1) {
       return <div>mail phải có @</div>;
     }
   };
+
+  /// tạo biến option để dùng làm giá trị Select
+  const options = [
+    { value: contactType, label: contactType },
+    { value: email, label: email },
+  ];
 
   return (
     <div className="container">
@@ -90,7 +114,9 @@ function Contact() {
           </div>
         </div>
       </div>
-{/* /////////////////////////// */}
+
+      {/* /////////////////////////// */}
+
       <div className="row row-content mb-5">
         <div className="col-12">
           <h3>Send us Your feedback</h3>
@@ -100,9 +126,10 @@ function Contact() {
             Firtname:
             <input
               type="text"
-              value={firtName}
+              /* value={dataContact.firtName} */
               name="name"
               placeholder="Firt Name"
+              /* dispatch action right here */
               onChange={(event) => setFirtname(event.target.value)}
               onBlur={HandleBlurFirtName}
             />
@@ -165,16 +192,6 @@ function Contact() {
             </Col>
 
             <Col md={{ size: 3, offset: 1 }}>
-              {/*  <Input
-                type="select"
-                name="contactType"
-                value={contactType}
-                onChange={() => setContactType(!contactType)}
-              >
-                <option>Tel.</option>
-                <option>Email</option>
-              </Input> */}
-
               <Select options={options} onChange={() => setContactType(email)} />
             </Col>
           </FormGroup>

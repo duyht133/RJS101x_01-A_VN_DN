@@ -1,18 +1,18 @@
 import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
-import { useSelector } from "react-redux";   /* hook selecTor dùng để get dữ liệu từ store Redux */
 /* import { leaders } from "../share/leaders"; */
 /* import { promotions } from "../share/promotions"; */
 /* import { dishes } from "../share/dishes"; */
 
-// sử dụng state của redux thay vì import trực tiếp
-import { dishes,promotions,leaders } from "../redux/selector";
+import { useSelector } from "react-redux";   /* hook selecTor dùng để get dữ liệu từ store Redux */
+import { dishes,promotions,leaders } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
 
 
 
 function RenderCard1() {
   // dùng state redux tại đây
   const datadishes = useSelector(dishes)
+  console.log(datadishes)
   return (
     <div>
       <div>

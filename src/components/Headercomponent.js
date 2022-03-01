@@ -24,12 +24,10 @@ function Header() {
   const [modal, setModal] = useState(false);
 
   const toggleNav = () => {
-    console.log(">>state", state);
     setState(!state);
   };
   const toggleModal = () => {
     setModal(!modal);
-    console.log(">>modal", !modal);
   };
 
   /////////

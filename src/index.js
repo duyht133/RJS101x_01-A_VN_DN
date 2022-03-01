@@ -5,10 +5,12 @@ import App from "./components/App";
 import "font-awesome/css/font-awesome.css";
 import "bootstrap-social/bootstrap-social.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Provider } from "react-redux";
-import { ConfigureStote } from "./redux/configureStore";
 
-const store = ConfigureStote();
+// import redux and store file.
+import { Provider } from "react-redux";
+import store from "./redux/configureStore";
+
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,7 +1,8 @@
-import { createStore } from "redux";
-import { Reducer,initialState } from "./reducer";
+import { configureStore } from '@reduxjs/toolkit'; // dùng function configureStore api từ toolkit đê tạo mới Store
+import  contactReducer  from "./reducer";
 
-export const ConfigureStote = () => {
-    const store = createStore(Reducer);
-    return store;
-}
+export default configureStore({
+    reducer:{
+        dataContact:contactReducer,
+    },
+})
