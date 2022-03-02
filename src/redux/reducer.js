@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"; // import reduxToolkit
+import { createSlice } from "@reduxjs/toolkit"; // import createSlice từ reduxToolkit để tạo mới 1 reducer(slice)
 
 import { dishes } from "../share/dishes";
 import { comments } from "../share/comment";
@@ -21,19 +21,18 @@ export const contactReducer = createSlice({
       message: "",
     },
   },
-  reducer:{
-      setStatecontact:(state,action)=>{
-        state.contact.firtName =action.payload;
-        /* state.contact.lastName =action.payload.contact.lastName;
-        state.contact.firtelNumtName =action.payload.contact.firtelNumtName;
-        state.contact.email =action.payload.contact.email;
-        state.contact.contactType =action.payload.contact.contactType;
-        state.contact.message =action.payload.contact.message; */
-      }
+  reducers:{ // reducer ở đây chính là công nhân thực thi các action
+      setStatecontact:(state,action)=>{ // đây là action
+        state.contact = action.payload; 
+        // state ở đây chính là dữ liệu trong initialState 
+        // action là trạng thái dispatch truyền vào từ sự kiện bên ngoài trên UI.
+        
+        console.log(state.contact)
+      },
   }
 });
 
 // export theo kiểu bắc buộc.
-export const { setStatecontact } = contactReducer.actions
+export const  {setStatecontact}  = contactReducer.actions // export action từ reducer ra để sử dụng.
 
-export default contactReducer.reducer
+export default contactReducer.reducer // export contactReducer trực tiếp dưới chính nó.

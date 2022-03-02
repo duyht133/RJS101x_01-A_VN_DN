@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FormGroup, Label, Col, Input, FormFeedback } from "reactstrap";
 import Select from "react-select"; // import react-select để dùng FormSelect.
-import { Form } from "redux-form";
-
 import {
   useSelector,
   useDispatch,
-} from "react-redux"; /* hook selecTor dùng để get dữ liệu từ store Redux */
+} from "react-redux"; /* 2 hook get, push dữ liệu trên store Redux */
 import { contact } from "../redux/selector"; // import selector function
 import { setStatecontact } from "../redux/reducer";
-/* import { contactAction } from "../redux/actions"; */
 
 function Contact() {
-  // get data in store
+  // Get data in store
   const dataContact = useSelector(contact);
   // Dispatch data to store
   const dispatch = useDispatch();
@@ -27,18 +24,21 @@ function Contact() {
 
   /// hàm nhận sự kiện submit
   const handleSubmit = () => {
-    const stateContact = {
+    const stateContact ={
       firtName:firtName,
-      /* lastName:lastName,
+      lastName:lastName,
       telNum:telNum,
-      email:email,
       contactType:contactType,
       message:message,
-      agree:agree, */
-    }
-    console.log(dataContact.firtName)
-    dispatch(setStatecontact("firtName"||firtName)) /// Lỗi tại đây, không dispatch được
+      agree:agree,
+    };
+    dispatch(setStatecontact(stateContact)); 
   };
+
+
+
+
+
 
   /// các hàm sử lý điều kiện nhập
   const HandleBlurFirtName = () => {
@@ -115,6 +115,9 @@ function Contact() {
         </div>
       </div>
 
+      <div>
+        <h1>{dataContact.firtName}</h1>
+      </div>
       {/* /////////////////////////// */}
 
       <div className="row row-content mb-5">

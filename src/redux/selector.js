@@ -1,5 +1,5 @@
 // hàm rút gọn cho useSelector
-// dataContact chính là tên biến trong reducer trong configureStore
+// dataContact chính là action trong reducer và trong configureStore
 export const dishes = (state)=> state.dataContact.dishes;
 export const comments = (event)=> event.dataContact.comments;
 export const leaders = (event)=> event.dataContact.leaders;
