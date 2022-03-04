@@ -18,7 +18,7 @@ const StaffListComponent = ({ selectStaff }) => {
   const dataDepartment = useSelector((data) => {
     return data.dataContact.departments;
   });
-  
+
   /* state option select */
   const [option, setOptions] = useState(() => {
     return dataDepartment.map((depart) => {
@@ -34,7 +34,6 @@ const StaffListComponent = ({ selectStaff }) => {
     { value: option[4], label: option[4] },
   ];
 
-
   /* state toggle */
   const [modal, setModal] = useState(false);
   //toggle modal ADD
@@ -43,13 +42,9 @@ const StaffListComponent = ({ selectStaff }) => {
   };
 
   /* state dataInput */
-  const [dataInput,setdataInput] = useState("");
+  const [dataInput, setdataInput] = useState("");
+  /* const getdataInput = (event) => setdataInput(event.target.value); */
 
-  const getdataInput = (event) =>{
-    setdataInput(event.target.value)
-    event.preventDefault();
-    console.log(dataInput)
-  }
   // tạo biến render
   const Render = () => {
     return dataStaffs.map((staff) => (
@@ -77,9 +72,14 @@ const StaffListComponent = ({ selectStaff }) => {
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalBody>
             <h1>Thêm nhân viên</h1>
-            <FormGroup >
+            <FormGroup>
               <Label htmlFor="Ten">Tên:</Label>
-              <Input type="text" name="Ten" id="Ten" value={dataInput} onChange={getdataInput}/>
+              <Input
+                type="text"
+                name="Ten"
+                id="Ten"
+                /* value={dataInput} onChange={getdataInput} */
+              />
             </FormGroup>
 
             <FormGroup>
@@ -92,10 +92,27 @@ const StaffListComponent = ({ selectStaff }) => {
               <Input type="date" name="Ngayinjob" id="Ngayinjob" />
             </FormGroup>
 
+            {/* tạo select tại đây */}
             <FormGroup>
-              {/* tạo select tại đây */}
               <Label htmlFor="PhongBan">Phòng Ban:</Label>
-              <Select options={options} />
+              {/* <Select options={options} onClick={(event) => {
+                  event.preventDefault();
+                  setdataInput(event.target.value);
+                }} /> */}
+              <Input
+                id="PhongBan"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setdataInput(event.target.value);
+                }}
+                type="select"
+              >
+                <option value={option[0]}>Sale</option>
+                <option value={option[1]}>HR</option>
+                <option value={option[2]}>Marketing</option>
+                <option value={option[3]}>IT</option>
+                <option value={option[4]}>Finance</option>
+              </Input>
             </FormGroup>
 
             <FormGroup>
@@ -113,8 +130,15 @@ const StaffListComponent = ({ selectStaff }) => {
               <Input type="number" name="Songaydalamthem" id="Songaydalamthem" />
             </FormGroup>
             <br></br>
-            <Button type="submit" value="submit" color="primary" onClick={toggleModal}>
-              Login
+            <Button
+              type="submit"
+              value="submit"
+              color="primary"
+              onClick={() => {
+                console.log(dataInput);
+              }}
+            >
+              ADD
             </Button>
           </ModalBody>
         </Modal>
