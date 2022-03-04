@@ -1,11 +1,20 @@
 import React from "react";
-import { DEPARTMENTS } from "../shared/staffs";
 import { Link } from "react-router-dom";
 import "../App.css"
+import {
+  useSelector,
+  useDispatch,
+} from "react-redux";
+
+
 
 const Department = () => {
   const Render = () => {
-    return DEPARTMENTS.map((num) => (
+    const dataDepartments = useSelector((data) => { // get data department in store
+      return data.dataContact.departments;
+    });
+
+    return dataDepartments.map((num) => (
       <div className="col-lg-4 col-md-6 col-sm-12 "  key={num.id}>
         <div className="department">
           <h1>{num.name}</h1>
@@ -14,6 +23,8 @@ const Department = () => {
       </div>
     ));
   };
+
+
   return (
     <div className="container ">
         <Link to="/">Nhân Viên</Link> | Phòng Ban

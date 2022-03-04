@@ -1,14 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { STAFFS } from "../shared/staffs";
-
+import {
+  useSelector,
+  useDispatch,
+} from "react-redux";
 
 const Salary = () => {
   const basicSalary = 3000000;
   const overTimeSalary = 200000;
 
   const Render = () => {
-    return STAFFS.map((staff) => (
+    const dataStaffs = useSelector((data) => { // get data department in store
+      return data.dataContact.staffs;
+    });
+
+    return dataStaffs.map((staff) => (
       <div className="col-lg-4 col-md-6 col-sm-12 " key={staff.id}>
         <div className="salary">
           <h1>{staff.name}</h1>

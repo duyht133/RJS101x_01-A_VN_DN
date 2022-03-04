@@ -2,7 +2,7 @@ import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-const RenderDish = ({ staff }) => {
+const RenderDish = ({ staff }) => { // nhận staff từ mainComponent
   const Render = () => {
     if (staff != null) {
       return (
@@ -29,6 +29,7 @@ const RenderDish = ({ staff }) => {
   };
 
   return (
+    // sử dụng bootstaps
     <div>
       <div className="container">
         <Link to="/">Nhân Viên</Link> |{staff.name}
