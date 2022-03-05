@@ -23,9 +23,9 @@ const StaffListComponent = ({ selectStaff }) => {
     return data.dataContact.departments;
   });
   /* state data contact */
-  const dataContact = useSelector((data) => {
+  /* const dataContact = useSelector((data) => {
     return data.dataContact.contact;
-  });
+  }); */
   
   ///////////////////////////////////
   /* state option select */
@@ -43,6 +43,11 @@ const StaffListComponent = ({ selectStaff }) => {
   };
   ///////////////////////////////////
   /* get data on use Input */
+  //get data ID
+  const [dataID,setdataID] =useState("");
+  const getdataID =(event)=>{
+    setdataID(event.target.value)
+  }
   // get data Name
   const [dataName, setdataName] = useState("");
   const getdataName = (event) => {
@@ -78,11 +83,13 @@ const StaffListComponent = ({ selectStaff }) => {
   const getdataOvertime = (event) => {
     setdataOverTime(event.target.value);
   };
+  // data img
+  const [dataImg,setdataimg] = useState('https://www.cse.ust.hk/~muppala/img/muppala.jpg');
   ///////////////////////////////////
   /* handleADD */
   const handleADD = () => {
-    console.log(dataContact)
     const stateContact = {
+      id:dataID,
       name: dataName,
       doB: dataBirth,
       startDate: dataInjob,
@@ -90,7 +97,9 @@ const StaffListComponent = ({ selectStaff }) => {
       salaryScale: dataSalary,
       annualLeave: dataDaysOff,
       overTime: dataOverTime,
+      image: dataImg,
     };
+    toggleModal();
     dispatch(setStatecontact(stateContact));
   };
   ///////////////////////////////////
@@ -112,29 +121,7 @@ const StaffListComponent = ({ selectStaff }) => {
       </div>
     ));
   };
-  //làm tới đây
-  const RenderLater= () => {
-    if(dataContact != ""){
-      return (
-        <div className="col-lg-2 col-md-4 col-sm-6 staff" key={dataContact.id}>
-        <Link to={`/staff/${dataContact.id}`}>
-          <div
-            onClick={() => {
-              // lắng nghe sự kiện onclick truyền dự liệu vào function selectStaff ở main
-              selectStaff(dataContact);
-            }}
-          >
-            <img className="img" src={dataContact.image} alt={dataContact.name} />
-            <div className="name">{dataContact.name}</div>
-          </div>
-        </Link>
-      </div>
-      )
-    }else {
-      return <div></div>;
-    }
-    
-  }
+
   ///////////////////////////////////
   return (
     // sử dụng bootstraps để grid
@@ -147,6 +134,11 @@ const StaffListComponent = ({ selectStaff }) => {
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalBody>
             <h1>Thêm nhân viên</h1>
+            <FormGroup>
+              <Label htmlFor="Ten">Mã Nhân Viên:</Label>
+              <Input type="number" name="id" id="id" onChange={getdataID} />
+            </FormGroup>
+
             <FormGroup>
               <Label htmlFor="Ten">Tên:</Label>
               <Input type="text" name="Ten" id="Ten" onChange={getdataName} />
@@ -165,7 +157,7 @@ const StaffListComponent = ({ selectStaff }) => {
             {/* tạo select tại đây */}
             <FormGroup>
               <Label htmlFor="PhongBan">Phòng Ban:</Label>
-              <Input id="PhongBan" onClick={getdataSelect} type="select">
+              <Input id="PhongBan" onChange={getdataSelect} type="select" >
                 <option value={option[0]}>Sale</option>
                 <option value={option[1]}>HR</option>
                 <option value={option[2]}>Marketing</option>
@@ -199,13 +191,12 @@ const StaffListComponent = ({ selectStaff }) => {
               />
             </FormGroup>
             <br></br>
-            <Button type="submit" value="submit" color="primary" onClick={handleADD}>
+            <Button type="submit" value="submit" color="primary" onClick={handleADD} >
               ADD
             </Button>
           </ModalBody>
         </Modal>
         <Render />
-        <RenderLater/>
       </div>
     </div>
   );
