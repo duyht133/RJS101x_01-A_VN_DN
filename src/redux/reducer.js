@@ -9,12 +9,13 @@ export const contactReducer = createSlice({
     staffs,
     departments,
     contact: {
-      firtName: "",
-      lastName: "",
-      telNum: "",
-      email: "",
-      contactType: "Tel.",
-      message: "",
+      name: "",
+      doB: "",
+      startDate: "",
+      department: "",
+      salaryScale: "",
+      annualLeave: "",
+      overTime: "",
     },
   },
   reducers: {
@@ -23,9 +24,7 @@ export const contactReducer = createSlice({
       // đây là action
       state.contact = action.payload; 
       // state ở đây chính là dữ liệu trong initialState
-      // action là trạng thái dispatch truyền vào từ sự kiện bên ngoài trên UI.
-
-      console.log(state.staffs);
+      // action là trạng thái dispatch truyền vào từ sự kiện bên ngoài từ UI.
     },
   },
 });

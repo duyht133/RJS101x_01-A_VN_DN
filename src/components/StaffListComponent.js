@@ -1,51 +1,100 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
-import Select from "react-select";
 import {
   useSelector,
   useDispatch,
 } from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
 import { Modal, Button, ModalBody, FormGroup, Label, Input } from "reactstrap";
+import "../App.css";
+import { setStatecontact } from "../redux/reducer"; // import actions từ reducer(công nhân)
 
 const StaffListComponent = ({ selectStaff }) => {
+  /* push dispatch lên store */
+  const dispatch = useDispatch();
+  ///////////////////////////////////
   /* get state từ reducer */
   // get data staffs
   const dataStaffs = useSelector((data) => {
+    //useSelector() chọc thẳng vào biến dataContact ở store để lấy state từ biến initialState trong reducer
     return data.dataContact.staffs;
   });
   // get data department
   const dataDepartment = useSelector((data) => {
     return data.dataContact.departments;
   });
-
+  /* state data contact */
+  const dataContact = useSelector((data) => {
+    return data.dataContact.contact;
+  });
+  
+  ///////////////////////////////////
   /* state option select */
   const [option, setOptions] = useState(() => {
     return dataDepartment.map((depart) => {
       return depart.name;
     });
   });
-  //options select
-  const options = [
-    { value: option[0], label: option[0] },
-    { value: option[1], label: option[1] },
-    { value: option[2], label: option[2] },
-    { value: option[3], label: option[3] },
-    { value: option[4], label: option[4] },
-  ];
-
+  ///////////////////////////////////
   /* state toggle */
   const [modal, setModal] = useState(false);
   //toggle modal ADD
   const toggleModal = () => {
     setModal(!modal);
   };
-
-  /* state dataInput */
-  const [dataInput, setdataInput] = useState("");
-  /* const getdataInput = (event) => setdataInput(event.target.value); */
-
-  // tạo biến render
+  ///////////////////////////////////
+  /* get data on use Input */
+  // get data Name
+  const [dataName, setdataName] = useState("");
+  const getdataName = (event) => {
+    setdataName(event.target.value);
+  };
+  //get data date birth
+  const [dataBirth, setdataBirth] = useState("");
+  const getdataBirth = (event) => {
+    setdataBirth(event.target.value);
+  };
+  //get data in job
+  const [dataInjob, setdataInjob] = useState("");
+  const getdataInjob = (event) => {
+    setdataInjob(event.target.value);
+  };
+  // get data select
+  const [dataSelect, setdataSelect] = useState("");
+  const getdataSelect = (event) => {
+    setdataSelect(event.target.value);
+  };
+  //get data Salary
+  const [dataSalary, setdataSalary] = useState("");
+  const getdataSalary = (event) => {
+    setdataSalary(event.target.value);
+  };
+  //get data days off
+  const [dataDaysOff, setdataDaysOff] = useState("");
+  const getdataDaysOff = (event) => {
+    setdataDaysOff(event.target.value);
+  };
+  // get data overTime
+  const [dataOverTime, setdataOverTime] = useState("");
+  const getdataOvertime = (event) => {
+    setdataOverTime(event.target.value);
+  };
+  ///////////////////////////////////
+  /* handleADD */
+  const handleADD = () => {
+    console.log(dataContact)
+    const stateContact = {
+      name: dataName,
+      doB: dataBirth,
+      startDate: dataInjob,
+      department: dataSelect,
+      salaryScale: dataSalary,
+      annualLeave: dataDaysOff,
+      overTime: dataOverTime,
+    };
+    dispatch(setStatecontact(stateContact));
+  };
+  ///////////////////////////////////
+  /* tạo biến render */
   const Render = () => {
     return dataStaffs.map((staff) => (
       <div className="col-lg-2 col-md-4 col-sm-6 staff" key={staff.id}>
@@ -63,50 +112,60 @@ const StaffListComponent = ({ selectStaff }) => {
       </div>
     ));
   };
-
-  // render modal
-  const RenderModal = () => {
-    return (
-      <div>
-        {/* render modal */}
+  //làm tới đây
+  const RenderLater= () => {
+    if(dataContact != ""){
+      return (
+        <div className="col-lg-2 col-md-4 col-sm-6 staff" key={dataContact.id}>
+        <Link to={`/staff/${dataContact.id}`}>
+          <div
+            onClick={() => {
+              // lắng nghe sự kiện onclick truyền dự liệu vào function selectStaff ở main
+              selectStaff(dataContact);
+            }}
+          >
+            <img className="img" src={dataContact.image} alt={dataContact.name} />
+            <div className="name">{dataContact.name}</div>
+          </div>
+        </Link>
+      </div>
+      )
+    }else {
+      return <div></div>;
+    }
+    
+  }
+  ///////////////////////////////////
+  return (
+    // sử dụng bootstraps để grid
+    <div className="container">
+      <h1 className="text-center">Nhân Viên</h1>
+      <Button outline onClick={toggleModal}>
+        <span className="fa fa-sign-in fa-lg login"></span> ADD
+      </Button>
+      <div className="row">
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalBody>
             <h1>Thêm nhân viên</h1>
             <FormGroup>
               <Label htmlFor="Ten">Tên:</Label>
-              <Input
-                type="text"
-                name="Ten"
-                id="Ten"
-                /* value={dataInput} onChange={getdataInput} */
-              />
+              <Input type="text" name="Ten" id="Ten" onChange={getdataName} />
             </FormGroup>
 
             <FormGroup>
               <Label htmlFor="Ngaysinh">Ngày sinh:</Label>
-              <Input type="date" name="Ngaysinh" id="Ngaysinh" />
+              <Input type="date" name="Ngaysinh" id="Ngaysinh" onChange={getdataBirth} />
             </FormGroup>
 
             <FormGroup>
               <Label htmlFor="Ngayinjob">Ngày vào công ty:</Label>
-              <Input type="date" name="Ngayinjob" id="Ngayinjob" />
+              <Input type="date" name="Ngayinjob" id="Ngayinjob" onChange={getdataInjob} />
             </FormGroup>
 
             {/* tạo select tại đây */}
             <FormGroup>
               <Label htmlFor="PhongBan">Phòng Ban:</Label>
-              {/* <Select options={options} onClick={(event) => {
-                  event.preventDefault();
-                  setdataInput(event.target.value);
-                }} /> */}
-              <Input
-                id="PhongBan"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setdataInput(event.target.value);
-                }}
-                type="select"
-              >
+              <Input id="PhongBan" onClick={getdataSelect} type="select">
                 <option value={option[0]}>Sale</option>
                 <option value={option[1]}>HR</option>
                 <option value={option[2]}>Marketing</option>
@@ -117,45 +176,36 @@ const StaffListComponent = ({ selectStaff }) => {
 
             <FormGroup>
               <Label htmlFor="Hesoluong">Hệ số lương:</Label>
-              <Input type="number" name="Hesoluong" id="Hesoluong" />
+              <Input type="number" name="Hesoluong" id="Hesoluong" onChange={getdataSalary} />
             </FormGroup>
 
             <FormGroup>
               <Label htmlFor="Songaynghiconlai">Số ngày nghỉ còn lại:</Label>
-              <Input type="number" name="Songaynghiconlai" id="Songaynghiconlai" />
+              <Input
+                type="number"
+                name="Songaynghiconlai"
+                id="Songaynghiconlai"
+                onChange={getdataDaysOff}
+              />
             </FormGroup>
 
             <FormGroup>
               <Label htmlFor="Songaydalamthem">Số ngày đã làm thêm:</Label>
-              <Input type="number" name="Songaydalamthem" id="Songaydalamthem" />
+              <Input
+                type="number"
+                name="Songaydalamthem"
+                id="Songaydalamthem"
+                onChange={getdataOvertime}
+              />
             </FormGroup>
             <br></br>
-            <Button
-              type="submit"
-              value="submit"
-              color="primary"
-              onClick={() => {
-                console.log(dataInput);
-              }}
-            >
+            <Button type="submit" value="submit" color="primary" onClick={handleADD}>
               ADD
             </Button>
           </ModalBody>
         </Modal>
-      </div>
-    );
-  };
-
-  return (
-    // sử dụng bootstraps để grid
-    <div className="container">
-      <h1 className="text-center">Nhân Viên</h1>
-      <Button outline onClick={toggleModal}>
-        <span className="fa fa-sign-in fa-lg login"></span> ADD
-      </Button>
-      <div className="row">
-        <RenderModal />
         <Render />
+        <RenderLater/>
       </div>
     </div>
   );
