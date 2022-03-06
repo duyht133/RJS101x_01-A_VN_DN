@@ -26,7 +26,7 @@ const StaffListComponent = ({ selectStaff }) => {
   /* const dataContact = useSelector((data) => {
     return data.dataContact.contact;
   }); */
-  
+
   ///////////////////////////////////
   /* state option select */
   const [option, setOptions] = useState(() => {
@@ -44,10 +44,10 @@ const StaffListComponent = ({ selectStaff }) => {
   ///////////////////////////////////
   /* get data on use Input */
   //get data ID
-  const [dataID,setdataID] =useState("");
-  const getdataID =(event)=>{
-    setdataID(event.target.value)
-  }
+  const [dataID, setdataID] = useState("");
+  const getdataID = (event) => {
+    setdataID(event.target.value);
+  };
   // get data Name
   const [dataName, setdataName] = useState("");
   const getdataName = (event) => {
@@ -84,12 +84,13 @@ const StaffListComponent = ({ selectStaff }) => {
     setdataOverTime(event.target.value);
   };
   // data img
-  const [dataImg,setdataimg] = useState('https://www.cse.ust.hk/~muppala/img/muppala.jpg');
+  const [dataImg, setdataimg] = useState("https://www.cse.ust.hk/~muppala/img/muppala.jpg");
+  
   ///////////////////////////////////
   /* handleADD */
   const handleADD = () => {
     const stateContact = {
-      id:dataID,
+      id: dataID,
       name: dataName,
       doB: dataBirth,
       startDate: dataInjob,
@@ -102,6 +103,28 @@ const StaffListComponent = ({ selectStaff }) => {
     toggleModal();
     dispatch(setStatecontact(stateContact));
   };
+  ///////////////////////////////////
+  /* data search */
+  const [dataSearch, setdataSearch] = useState("");
+  const getdataSearch = (event) => {
+    setdataSearch(event.target.value);
+  };
+  const btSearch = () => {
+    dataStaffs.map((event)=>{
+      const inputSearch = dataSearch.toString().toLowerCase();
+      const stateName =  event.name.toLowerCase();
+      console.log(stateName[1])
+      for(let i=0; i<stateName.length; i++){
+        if(stateName[i] === inputSearch){
+          console.log(dataSearch)
+        }
+      }
+    })
+    
+  };
+
+
+
   ///////////////////////////////////
   /* tạo biến render */
   const Render = () => {
@@ -127,9 +150,36 @@ const StaffListComponent = ({ selectStaff }) => {
     // sử dụng bootstraps để grid
     <div className="container">
       <h1 className="text-center">Nhân Viên</h1>
-      <Button outline onClick={toggleModal}>
-        <span className="fa fa-sign-in fa-lg login"></span> ADD
-      </Button>
+      <div className="d-flex">
+        <Button
+          style={{
+            width: "70px",
+            height: "70px",
+            marginRight: "20px",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
+          outline
+          onClick={toggleModal}
+        >
+          <span className="fa fa-sign-in fa-lg login"></span> ADD
+        </Button>
+        <Input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Tìm kiếm nhân viên"
+          style={{ width: "30%", margin: "20px 0px" }}
+          onChange={getdataSearch}
+        />
+        <Button
+          style={{ width: "20%", height: "30%", marginTop: "20px", marginLeft: "20px" }}
+          color="primary"
+          onClick={btSearch}
+        >
+          Tìm kiếm
+        </Button>
+      </div>
       <div className="row">
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalBody>
@@ -157,7 +207,7 @@ const StaffListComponent = ({ selectStaff }) => {
             {/* tạo select tại đây */}
             <FormGroup>
               <Label htmlFor="PhongBan">Phòng Ban:</Label>
-              <Input id="PhongBan" onChange={getdataSelect} type="select" >
+              <Input id="PhongBan" onChange={getdataSelect} type="select">
                 <option value={option[0]}>Sale</option>
                 <option value={option[1]}>HR</option>
                 <option value={option[2]}>Marketing</option>
@@ -191,7 +241,7 @@ const StaffListComponent = ({ selectStaff }) => {
               />
             </FormGroup>
             <br></br>
-            <Button type="submit" value="submit" color="primary" onClick={handleADD} >
+            <Button type="submit" value="submit" color="primary" onClick={handleADD}>
               ADD
             </Button>
           </ModalBody>
