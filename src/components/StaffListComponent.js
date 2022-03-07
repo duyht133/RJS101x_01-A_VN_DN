@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   useSelector,
@@ -9,7 +9,7 @@ import "../App.css";
 import { setStatecontact } from "../redux/reducer"; // import actions từ reducer(công nhân)
 
 const StaffListComponent = ({ selectStaff }) => {
-  /* push dispatch lên store */
+  /* tạo biến dispatch */
   const dispatch = useDispatch();
   ///////////////////////////////////
   /* get state từ reducer */
@@ -22,11 +22,6 @@ const StaffListComponent = ({ selectStaff }) => {
   const dataDepartment = useSelector((data) => {
     return data.dataContact.departments;
   });
-  /* state data contact */
-  /* const dataContact = useSelector((data) => {
-    return data.dataContact.contact;
-  }); */
-
   ///////////////////////////////////
   /* state option select */
   const [option, setOptions] = useState(() => {
@@ -35,57 +30,48 @@ const StaffListComponent = ({ selectStaff }) => {
     });
   });
   ///////////////////////////////////
-  /* state toggle */
-  const [modal, setModal] = useState(false);
-  //toggle modal ADD
-  const toggleModal = () => {
-    setModal(!modal);
-  };
-  ///////////////////////////////////
   /* get data on use Input */
-  //get data ID
   const [dataID, setdataID] = useState("");
-  const getdataID = (event) => {
-    setdataID(event.target.value);
-  };
-  // get data Name
   const [dataName, setdataName] = useState("");
-  const getdataName = (event) => {
-    setdataName(event.target.value);
-  };
-  //get data date birth
   const [dataBirth, setdataBirth] = useState("");
-  const getdataBirth = (event) => {
-    setdataBirth(event.target.value);
-  };
-  //get data in job
   const [dataInjob, setdataInjob] = useState("");
-  const getdataInjob = (event) => {
-    setdataInjob(event.target.value);
-  };
-  // get data select
   const [dataSelect, setdataSelect] = useState("");
-  const getdataSelect = (event) => {
-    setdataSelect(event.target.value);
-  };
-  //get data Salary
   const [dataSalary, setdataSalary] = useState("");
-  const getdataSalary = (event) => {
-    setdataSalary(event.target.value);
-  };
-  //get data days off
   const [dataDaysOff, setdataDaysOff] = useState("");
-  const getdataDaysOff = (event) => {
-    setdataDaysOff(event.target.value);
-  };
+  // data img
+  const [dataImg, setdataimg] = useState("https://www.cse.ust.hk/~muppala/img/muppala.jpg");
+  //get data ID
+  const getdataID = (event) => setdataID(event.target.value);
+  // get data Name
+  const getdataName = (event) => setdataName(event.target.value);
+  //get data date birth
+  const getdataBirth = (event) => setdataBirth(event.target.value);
+  //get data in job
+  const getdataInjob = (event) => setdataInjob(event.target.value);
+  // get data select
+  const getdataSelect = (event) => setdataSelect(event.target.value);
+  //get data Salary
+  const getdataSalary = (event) => setdataSalary(event.target.value);
+  //get data days off
+  const getdataDaysOff = (event) => setdataDaysOff(event.target.value);
   // get data overTime
   const [dataOverTime, setdataOverTime] = useState("");
   const getdataOvertime = (event) => {
     setdataOverTime(event.target.value);
   };
-  // data img
-  const [dataImg, setdataimg] = useState("https://www.cse.ust.hk/~muppala/img/muppala.jpg");
-
+  ///////////////////////////////////
+  /* state toggle */
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    // set lại data của input khi thoát khỏi modal
+    setdataID("");
+    setdataName("");
+    setdataBirth("");
+    setdataInjob("");
+    setFormblur(false);
+    // toggle modal
+    setModal(!modal);
+  };
   ///////////////////////////////////
   /* handleADD */
   const handleADD = () => {
@@ -100,31 +86,74 @@ const StaffListComponent = ({ selectStaff }) => {
       overTime: dataOverTime,
       image: dataImg,
     };
-    if(stateContact.id != "" || stateContact.name != ""){
+    if (
+      // so sánh điều kiện input nhập vào nếu nhập đủ các trường thì cho phép dispatch lên store.
+      stateContact.id != "" &&
+      stateContact.name != "" &&
+      stateContact.doB != "" &&
+      stateContact.startDate != ""
+    ) {
       dispatch(setStatecontact(stateContact));
       toggleModal();
-    }
+    } else AddBlur(); // gọi trực tiếp từ validate form
   };
   ///////////////////////////////////
-  /* data search */
+  /* Data search */
   const [staffs, setStaffs] = useState(dataStaffs); // staffs ở đây
+  // chạy side effect tại đây để r-render lại dữ liệu sau khi dispatch.
+  useEffect(() => {
+    setStaffs(dataStaffs);
+  }, [dataStaffs]);
+  // tạo state để lưu trữ giá trị input search
   const [dataSearch, setdataSearch] = useState("");
   const getdataSearch = (event) => {
     setdataSearch(event.target.value);
   };
+  /* Button search onclick */
   const btSearch = () => {
+    // tạo 1 biến mới để lưu dataStaffs get từ store
     const listFilter = dataStaffs;
-    const newListStaff = listFilter.filter((staff) =>
-      staff.name.toLowerCase().includes(dataSearch.toLowerCase())
-    );
-    setStaffs(newListStaff);
+    // filter lọc  mảng với điều kiện chỉ định,nếu thỏa điều kiện sẽ tạo ra các phần tử đã lọc thành mảng con
+    // includes kiểm tra 1 điều kiện đầu vào có nằm trong 1 mảng, nếu đúng trả về true
+    const newListStaff = listFilter.filter((staff) => {
+      return staff.name.toLowerCase().includes(dataSearch.toLowerCase());
+    });
+    setStaffs(newListStaff); //set state staffs là 1 dữ liệu mới đã lọc
+  };
+  ///////////////////////////////////
+  /* validate form */
+  // tạo state cho validate form
+  const [formblur, setFormblur] = useState(false);
+  // hiển thị Blur validate form được gọi ở dòng 121 khi button add được onclick
+  const AddBlur = () => {
+    setFormblur(true);
+  };
+  // so sánh điều kiện input
+  const HandleBlurID = () => {
+    if (formblur !== false && dataID == "") {
+      return <div>Yêu Cầu nhập</div>;
+    } else return <div></div>;
+  };
+  const HandleBlurName = () => {
+    if (formblur !== false && dataName == "") {
+      return <div>Yêu Cầu nhập</div>;
+    } else return <div></div>;
+  };
+  const HandleBlurDatebirth = () => {
+    if (formblur !== false && dataBirth == "") {
+      return <div>Yêu Cầu nhập</div>;
+    } else return <div></div>;
+  };
+  const HandleBlurDatestart = () => {
+    if (formblur !== false && dataInjob == "") {
+      return <div>Yêu Cầu nhập</div>;
+    } else return <div></div>;
   };
 
   ///////////////////////////////////
-
   /* tạo biến render */
   const Render = () => {
-    // có vấn đề ngay chỗ này
+    // tạo biến uidataState
     const uidataState = (staff) => (
       <div className="col-lg-2 col-md-4 col-sm-6 staff" key={staff.id}>
         <Link to={`/staff/${staff.id} || ${staff.name}`}>
@@ -140,7 +169,7 @@ const StaffListComponent = ({ selectStaff }) => {
         </Link>
       </div>
     );
-    return staffs.map(uidataState);
+    return staffs.map(uidataState); // lấy biến staffs từ state data search
   };
 
   ///////////////////////////////////
@@ -170,6 +199,7 @@ const StaffListComponent = ({ selectStaff }) => {
           style={{ width: "30%", margin: "20px 0px" }}
           onChange={getdataSearch}
         />
+
         <Button
           style={{ width: "20%", height: "30%", marginTop: "20px", marginLeft: "20px" }}
           color="primary"
@@ -178,28 +208,57 @@ const StaffListComponent = ({ selectStaff }) => {
           Tìm kiếm
         </Button>
       </div>
+
+      {/* Modal */}
       <div className="row">
         <Modal isOpen={modal} toggle={toggleModal}>
           <ModalBody>
-            <h1>Thêm nhân viên</h1>
+            <div className="d-flex">
+              <h1>Thêm nhân viên</h1>
+              <Button onClick={toggleModal} className=" ms-auto h-75">
+                <span className="fa-solid fa-xmark"> X </span>
+              </Button>
+            </div>
             <FormGroup>
               <Label htmlFor="Ten">Mã Nhân Viên:</Label>
-              <Input type="number" name="id" id="id" onChange={getdataID} />
+              <Input type="number" name="id" id="id" onChange={getdataID} onBlur={HandleBlurID} />
+              <div style={{ color: "red" }}>{HandleBlurID()}</div>
             </FormGroup>
 
             <FormGroup>
               <Label htmlFor="Ten">Tên:</Label>
-              <Input type="text" name="Ten" id="Ten" onChange={getdataName} />
+              <Input
+                type="text"
+                name="Ten"
+                id="Ten"
+                onChange={getdataName}
+                onBlur={HandleBlurName}
+              />
+              <div style={{ color: "red" }}>{HandleBlurName()}</div>
             </FormGroup>
 
             <FormGroup>
               <Label htmlFor="Ngaysinh">Ngày sinh:</Label>
-              <Input type="date" name="Ngaysinh" id="Ngaysinh" onChange={getdataBirth} />
+              <Input
+                type="date"
+                name="Ngaysinh"
+                id="Ngaysinh"
+                onChange={getdataBirth}
+                onBlur={HandleBlurDatebirth}
+              />
+              <div style={{ color: "red" }}>{HandleBlurDatebirth()}</div>
             </FormGroup>
 
             <FormGroup>
               <Label htmlFor="Ngayinjob">Ngày vào công ty:</Label>
-              <Input type="date" name="Ngayinjob" id="Ngayinjob" onChange={getdataInjob} />
+              <Input
+                type="date"
+                name="Ngayinjob"
+                id="Ngayinjob"
+                onChange={getdataInjob}
+                onBlur={HandleBlurDatestart}
+              />
+              <div style={{ color: "red" }}>{HandleBlurDatestart()}</div>
             </FormGroup>
 
             {/* tạo select tại đây */}
