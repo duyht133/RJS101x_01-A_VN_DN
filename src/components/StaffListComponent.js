@@ -113,7 +113,7 @@ const StaffListComponent = ({ selectStaff }) => {
     dataStaffs.map((event)=>{
       const inputSearch = dataSearch.toString().toLowerCase();
       const stateName =  event.name.toLowerCase();
-      console.log(stateName[1])
+      /* console.log(stateName[1]) */
       for(let i=0; i<stateName.length; i++){
         if(stateName[i] === inputSearch){
           console.log(dataSearch)
