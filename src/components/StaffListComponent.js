@@ -85,7 +85,7 @@ const StaffListComponent = ({ selectStaff }) => {
   };
   // data img
   const [dataImg, setdataimg] = useState("https://www.cse.ust.hk/~muppala/img/muppala.jpg");
-  
+
   ///////////////////////////////////
   /* handleADD */
   const handleADD = () => {
@@ -100,37 +100,34 @@ const StaffListComponent = ({ selectStaff }) => {
       overTime: dataOverTime,
       image: dataImg,
     };
-    toggleModal();
-    dispatch(setStatecontact(stateContact));
+    if(stateContact.id != "" || stateContact.name != ""){
+      dispatch(setStatecontact(stateContact));
+      toggleModal();
+    }
   };
   ///////////////////////////////////
   /* data search */
+  const [staffs, setStaffs] = useState(dataStaffs); // staffs ở đây
   const [dataSearch, setdataSearch] = useState("");
   const getdataSearch = (event) => {
     setdataSearch(event.target.value);
   };
   const btSearch = () => {
-    dataStaffs.map((event)=>{
-      const inputSearch = dataSearch.toString().toLowerCase();
-      const stateName =  event.name.toLowerCase();
-      /* console.log(stateName[1]) */
-      for(let i=0; i<stateName.length; i++){
-        if(stateName[i] === inputSearch){
-          console.log(dataSearch)
-        }
-      }
-    })
-    
+    const listFilter = dataStaffs;
+    const newListStaff = listFilter.filter((staff) =>
+      staff.name.toLowerCase().includes(dataSearch.toLowerCase())
+    );
+    setStaffs(newListStaff);
   };
 
-
-
   ///////////////////////////////////
+
   /* tạo biến render */
   const Render = () => {
-    return dataStaffs.map((staff) => (
+    // có vấn đề ngay chỗ này
+    const uidataState = (staff) => (
       <div className="col-lg-2 col-md-4 col-sm-6 staff" key={staff.id}>
-        <Link to={`/staff/${staff.id}`}>
+        <Link to={`/staff/${staff.id} || ${staff.name}`}>
           <div
             onClick={() => {
               // lắng nghe sự kiện onclick truyền dự liệu vào function selectStaff ở main
@@ -142,7 +139,8 @@ const StaffListComponent = ({ selectStaff }) => {
           </div>
         </Link>
       </div>
-    ));
+    );
+    return staffs.map(uidataState);
   };
 
   ///////////////////////////////////
