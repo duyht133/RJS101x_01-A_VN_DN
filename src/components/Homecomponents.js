@@ -1,9 +1,5 @@
 import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
-/* import { leaders } from "../share/leaders"; */
-/* import { promotions } from "../share/promotions"; */
-/* import { dishes } from "../share/dishes"; */
-
 import { useSelector } from "react-redux";   /* hook selecTor dùng để get dữ liệu từ store Redux */
 import { dishes,promotions,leaders } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
 

@@ -1,27 +1,20 @@
 import React, { useState } from "react";
-import { Card, CardImg, CardImgOverlay, CardTitle} from "reactstrap";
+import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-/* import { dishes } from "../share/dishes"; */
+import { dishes } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
 
-// sử dụng state của redux thay vì import trực tiếp
-import { dishes } from "../redux/selector";
-
-
-
-function Menu({onSelect}) {
-  const dataDishes = useSelector(dishes)
-
+function Menu({ onSelect }) {
+  const dataDishes = useSelector(dishes);
   return (
     <>
       <Link to="/home">Home</Link> | <Link to="/menu">Menu</Link>
-
       {dataDishes.map((data) => (
         <Link to={`/menu/${data.id}`} key={data.id}>
-          <div className="col-12 col-md-5 m-1 menu" >
+          <div className="col-12 col-md-5 m-1 menu">
             <Card
               onClick={() => {
-                onSelect(data)
+                onSelect(data);
               }}
             >
               <CardImg className="image" src={data.image} alt={data.name} />

@@ -6,7 +6,7 @@ import {
   useDispatch,
 } from "react-redux"; /* 2 hook get, push dữ liệu trên store Redux */
 import { contact } from "../redux/selector"; // import selector function
-import { setStatecontact } from "../redux/reducer";
+import { setStatecontact } from "../redux/reducer"; // import reducer actions
 
 function Contact() {
   // Get data in store
@@ -34,11 +34,6 @@ function Contact() {
     };
     dispatch(setStatecontact(stateContact)); 
   };
-
-
-
-
-
 
   /// các hàm sử lý điều kiện nhập
   const HandleBlurFirtName = () => {
@@ -115,9 +110,6 @@ function Contact() {
         </div>
       </div>
 
-      <div>
-        <h1>{dataContact.firtName}</h1>
-      </div>
       {/* /////////////////////////// */}
 
       <div className="row row-content mb-5">

@@ -1,20 +1,20 @@
 import React, { Component, useState } from "react";
 import {
-  Nav,
   Navbar,
   NavbarBrand,
   NavbarToggler,
+  ModalHeader,
+  Form,
+  ModalFooter,
   NavItem,
+  Nav,
   Jumbotron,
   Modal,
-  ModalHeader,
   Button,
   ModalBody,
-  Form,
   FormGroup,
   Label,
   Input,
-  ModalFooter,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./App.css";
