@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"; // import createSlice từ reduxToolkit để tạo mới 1 reducer(slice)
-
 import { dishes } from "../share/dishes";
 import { comments } from "../share/comment";
 import { leaders } from "../share/leaders";
@@ -34,6 +33,9 @@ export const contactReducer = createSlice({
       newList.comments = [...newList.comments, action.payload];
       return newList;
     },
+
+
+
   },
 });
 

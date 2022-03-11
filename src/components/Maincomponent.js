@@ -7,17 +7,14 @@ import Header from "./Headercomponent";
 import Footer from "./Footercomponent";
 import Contact from "./Contactcomponents";
 import Home from "./Homecomponents";
+import Dashboard from "./Dashboard";
 import "./App.css";
-
-
-
 
 function Main() {
   const [dishDetail, setdishDetail] = useState(null);
   const onSelecdish = (data) => {
     setdishDetail(data);
   };
-
   return (
     <>
       <Header />
@@ -27,11 +24,15 @@ function Main() {
 
         <Route path="home" element={<Home />} />
 
-        <Route path="menu" element={<Menu onSelect={onSelecdish} /* data={mapStateToProps} */ />} />
+        <Route path="menu" element={<Menu onSelect={onSelecdish} />} />
 
         <Route path="/menu/:dishId" element={<Dishdetail props={dishDetail} />} />
 
         <Route path="contact" element={<Contact />} />
+        {/* làm tới đây */}
+        <Route path="dashboard" element={<Dashboard />}/>
+          
+   
       </Routes>
 
       <Footer />

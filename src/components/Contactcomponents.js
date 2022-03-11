@@ -121,10 +121,9 @@ function Contact() {
             Firtname:
             <input
               type="text"
-              /* value={dataContact.firtName} */
+              value={firtName}
               name="name"
               placeholder="Firt Name"
-              /* dispatch action right here */
               onChange={(event) => setFirtname(event.target.value)}
               onBlur={HandleBlurFirtName}
             />
@@ -147,7 +146,7 @@ function Contact() {
           <label>
             TelNumber:
             <input
-              type="text"
+              type="number"
               value={telNum}
               name="name"
               placeholder="Tel Number"

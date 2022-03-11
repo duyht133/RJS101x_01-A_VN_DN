@@ -21,7 +21,7 @@ import { setStatecomment } from "../redux/reducer"; // import actions từ reduc
 
 function Dishdetail({ props }) {
   /* hook selecTor dùng để get dữ liệu từ store Redux */
-  const dataComments = useSelector(comments); //comment được import từ configureStore
+  const dataComments = useSelector(comments); //comment được import từ selector trỏ thẳng đến configureStore.
   /* handle input */
   const [rating, setRating] = useState("");
   const [nameInput, setNameInput] = useState("");
@@ -50,7 +50,7 @@ function Dishdetail({ props }) {
       author: nameInput,
       date: date
     }
-    if(stateComment.rating != '' && stateComment.comment != ''  && stateComment.author != ''){
+    if(stateComment.rating !== '' && stateComment.comment !== ''  && stateComment.author !== ''){
       dispatch(setStatecomment(stateComment));
       toggleModal();
     }

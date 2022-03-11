@@ -8,7 +8,6 @@ import { dishes,promotions,leaders } from "../redux/selector"; // sử dụng st
 function RenderCard1() {
   // dùng state redux tại đây
   const datadishes = useSelector(dishes)
-  console.log(datadishes)
   return (
     <div>
       <div>
