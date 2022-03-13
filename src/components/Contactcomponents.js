@@ -1,19 +1,18 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FormGroup, Label, Col, Input, FormFeedback } from "reactstrap";
 import Select from "react-select"; // import react-select để dùng FormSelect.
 import {
   useSelector,
   useDispatch,
 } from "react-redux"; /* 2 hook get, push dữ liệu trên store Redux */
-import { contact } from "../redux/selector"; // import selector function
-import { setStatecontact } from "../redux/reducer"; // import reducer actions
+import { setStatefeedback } from "../redux/reducerForms";
 
 function Contact() {
   // Get data in store
-  const dataContact = useSelector(contact);
+  const dataFeedback = useSelector((state) => state.form.feedback);    
+  console.log(dataFeedback.firtName)
   // Dispatch data to store
   const dispatch = useDispatch();
-
   const [firtName, setFirtname] = useState("");
   const [lastName, setLastname] = useState("");
   const [telNum, setTelnum] = useState("");
@@ -23,16 +22,26 @@ function Contact() {
   const [agree, setAgree] = useState(false);
 
   /// hàm nhận sự kiện submit
-  const handleSubmit = () => {
-    const stateContact ={
-      firtName:firtName,
-      lastName:lastName,
-      telNum:telNum,
-      contactType:contactType,
-      message:message,
-      agree:agree,
-    };
-    dispatch(setStatecontact(stateContact)); 
+  // const handleSubmit = (e) => {
+  //   const stateFeedback = {
+  //     firtName: firtName,
+  //     lastName: lastName,
+  //     telNum: telNum,
+  //     contactType: contactType,
+  //     message: message,
+  //     agree: agree,
+  //   };
+
+  //   console.log(dataFeedback.firtName);
+  // };
+
+  const onChangeInput = (e) => {
+    dispatch(
+      setStatefeedback({
+        nameInput: e.target.name,
+        value: e.target.value,
+      })
+    );
   };
 
   /// các hàm sử lý điều kiện nhập
@@ -111,7 +120,6 @@ function Contact() {
       </div>
 
       {/* /////////////////////////// */}
-
       <div className="row row-content mb-5">
         <div className="col-12">
           <h3>Send us Your feedback</h3>
@@ -121,10 +129,10 @@ function Contact() {
             Firtname:
             <input
               type="text"
-              value={firtName}
-              name="name"
+              /* value={dataFeedback.firtName} */
+              name="firtName"
               placeholder="Firt Name"
-              onChange={(event) => setFirtname(event.target.value)}
+              onChange={onChangeInput}
               onBlur={HandleBlurFirtName}
             />
             <div className="color">{HandleBlurFirtName()}</div>
@@ -137,7 +145,8 @@ function Contact() {
               value={lastName}
               name="name"
               placeholder="Last Name"
-              onChange={(event) => setLastname(event.target.value)}
+              /* onChange={(event) => setLastname(event.target.value)} */
+              onChange={onChangeInput}
               onBlur={HandleBlurlastName}
             />
             <div className="color">{HandleBlurlastName()}</div>
@@ -148,9 +157,10 @@ function Contact() {
             <input
               type="number"
               value={telNum}
-              name="name"
+              name="TelNumber"
               placeholder="Tel Number"
-              onChange={(event) => setTelnum(event.target.value)}
+              /* onChange={(event) => setTelnum(event.target.value)} */
+              onChange={onChangeInput}
               onBlur={HandleBlurTelNum}
             />
             <div className="color">{HandleBlurTelNum()}</div>
@@ -163,7 +173,8 @@ function Contact() {
               value={email}
               name="email"
               placeholder="Email"
-              onChange={(event) => setEmail(event.target.value)}
+              /* onChange={(event) => setEmail(event.target.value)} */
+              onChange={onChangeInput}
               onBlur={HandleBlurEmail}
             />
             <div className="color">{HandleBlurEmail()}</div>
@@ -186,7 +197,10 @@ function Contact() {
             </Col>
 
             <Col md={{ size: 3, offset: 1 }}>
-              <Select options={options} onChange={() => setContactType(email)} />
+              <Select
+                options={options} /* onChange={() => setContactType(email)} */
+                onChange={onChangeInput}
+              />
             </Col>
           </FormGroup>
 
@@ -198,11 +212,12 @@ function Contact() {
               type="textarea"
               value={message}
               name="message"
-              onChange={(event) => setMessage(event.target.value)}
+              /* onChange={(event) => setMessage(event.target.value)} */
+              onChange={onChangeInput}
             />
           </label>
           <br />
-          <input type="submit" value="Submit" onClick={handleSubmit} />
+          <input type="submit" value="Submit" /* onClick={handleSubmit} */ />
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { selectLoading, selectErrorMessage, selectUser } from "../redux/selector";
 import { login } from "../redux/reducerThunk";
+import Dashboard from "./Dashboard";
 import "./App.css";
 
 function Header() {
@@ -30,7 +31,7 @@ function Header() {
   };
   //handle modal
   const toggleModal = () => {
-    setEmail(""); 
+    setEmail("");
     setPassword("");
     setModal(!modal);
   };
@@ -39,15 +40,39 @@ function Header() {
   const errorMessage = useSelector(selectErrorMessage);
   const user = useSelector(selectUser);
 
-  const handleLogin = async () => {
+  const HandleLogin = () => {
     dispatch(login({ email, password }));
+    toggleModal();
   };
-  
-  // lỗi chuyển hướng tại đây
-  if (user) {
-    console.log(user.firstName);
-    return <Link to="/Dashboard" />;
+
+  // toggle link dashboar user Login.
+  const LinkDashboard = () => {
+    if (user !== "") {
+      return (
+        <Link className="nav-link" to="/dashboard">
+          <span className="far fa-id-card"></span> Dashboard
+        </Link>
+      );
+    } else {
+      return <div></div>;
+    }
+  };
+  //////////////////dsfasdfasdf
+  // Route Dashboard
+  const RouteDashboard = () => {
+    if (user == "") {
+      return <div>Login</div>;
+    } else {
+      return <Link to="/dashboard"><div className="text-Login">Login</div></Link>;
+    }
+  };
+
+  // error Message 
+  const ErrorMessage = () => {
+    return errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>
   }
+
+
 
   /////////
   const Render = () => {
@@ -108,17 +133,20 @@ function Header() {
             <span className="far fa-id-card"></span> Contact
           </Link>
 
-          <Nav className="ml-auto " navbar>
-            <NavItem>
-              <Button outline onClick={toggleModal} className="loginToggle">
-                <span className="fa fa-sign-in fa-lg login"></span> Login
-              </Button>
-            </NavItem>
-          </Nav>
+          <div className="d-flex mr-5">
+            <Nav className="ml-auto " navbar>
+              <NavItem>
+                <Button outline onClick={toggleModal} className="loginToggle">
+                  <span className="fa fa-sign-in fa-lg login"></span> Login
+                </Button>
+              </NavItem>
+            </Nav>
 
-          <Link className="nav-link" to="/dashboard">
+            <LinkDashboard />
+          </div>
+          {/* <Link className="nav-link" to="/dashboard">
             <span className="far fa-id-card"></span> Dashboard
-          </Link>
+          </Link> */}
         </div>
       </div>
       <Render />
@@ -127,7 +155,7 @@ function Header() {
       <Modal isOpen={modal} toggle={toggleModal}>
         <ModalBody>
           <h1>Login</h1>
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          <ErrorMessage/>
           <FormGroup>
             <Label htmlFor="username">Username</Label>
             <Input
@@ -157,21 +185,18 @@ function Header() {
             </Label>
           </FormGroup>
 
-
           {/* lỗi chuyển hướng tại đây */}
-          {/* <Link to="/dashboard"> */}
-            <Button
-              type="submit"
-              value="submit"
-              color="primary"
-              onClick={handleLogin}
-              disabled={isLoading}
-            >
-              Login
-            </Button>
-          {/* </Link> */}
+          <Button
+            type="submit"
+            value="submit"
+            color="primary"
+            onClick={HandleLogin}
+            disabled={isLoading}
+          >
+            {/* <Link to="/dashboard">Login</Link> */}
+            <RouteDashboard />
+          </Button>
 
-          
           <p style={{ fontSize: "0.7rem", marginTop: "70px" }}>
             <b>Test account:</b>
             <br />

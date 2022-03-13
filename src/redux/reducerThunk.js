@@ -21,13 +21,14 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     isLoading: false,
-    currentUser: null,
+    currentUser: "",
     errorMessage: "",
+    /* author:false, //3 */
   },
   reducers: {
     // Logout không gọi API mà chỉ cập nhật state
     logout: (state) => {
-      state.currentUser = null;
+      state.currentUser = "";
       state.errorMessage = "";
     },
   },

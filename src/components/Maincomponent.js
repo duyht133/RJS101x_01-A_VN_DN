@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
 import Menu from "./Menucomponents";
 import Dishdetail from "./DishdetailComponents";
 import Header from "./Headercomponent";
@@ -15,6 +15,9 @@ function Main() {
   const onSelecdish = (data) => {
     setdishDetail(data);
   };
+  
+ /*  const author = useSelector((state)=>{return state.user.author})//1 */
+
   return (
     <>
       <Header />
@@ -30,7 +33,7 @@ function Main() {
 
         <Route path="contact" element={<Contact />} />
         {/* làm tới đây */}
-        <Route path="dashboard" element={<Dashboard />}/>
+        <Route path="dashboard" element={<Dashboard /* author={author} */ />}/>
           
    
       </Routes>
