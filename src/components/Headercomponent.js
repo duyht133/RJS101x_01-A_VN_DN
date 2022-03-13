@@ -18,13 +18,19 @@ import Dashboard from "./Dashboard";
 import "./App.css";
 
 function Header() {
+  // useDispatch
+  const dispatch = useDispatch();
+  // Select data from store
+  const isLoading = useSelector(selectLoading);
+  const errorMessage = useSelector(selectErrorMessage);
+  const user = useSelector(selectUser);
+
+  // state modal
   const [state, setState] = useState(false);
   const [modal, setModal] = useState(false);
   // state login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // useDispatch
-  const dispatch = useDispatch();
   //handle nav
   const toggleNav = () => {
     setState(!state);
@@ -35,17 +41,14 @@ function Header() {
     setPassword("");
     setModal(!modal);
   };
-  // Select data from store
-  const isLoading = useSelector(selectLoading);
-  const errorMessage = useSelector(selectErrorMessage);
-  const user = useSelector(selectUser);
-
+  //handle Login
   const HandleLogin = () => {
     dispatch(login({ email, password }));
     toggleModal();
   };
 
   // toggle link dashboar user Login.
+  // nếu đăng nhập thành công sẽ hiện ra tag Dashboard
   const LinkDashboard = () => {
     if (user !== "") {
       return (
@@ -57,25 +60,27 @@ function Header() {
       return <div></div>;
     }
   };
-  //////////////////dsfasdfasdf
+  //////////////////
   // Route Dashboard
+  // nếu đăng nhập thành công sẽ nút Login nếu bấm lần thứ 2 sẽ chuyển đến Dashboard
   const RouteDashboard = () => {
     if (user == "") {
       return <div>Login</div>;
     } else {
-      return <Link to="/dashboard"><div className="text-Login">Login</div></Link>;
+      return (
+        <Link to="/dashboard">
+          <div className="text-Login">Login</div>
+        </Link>
+      );
     }
   };
-
-  // error Message 
+  // error Message
   const ErrorMessage = () => {
-    return errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>
-  }
-
-
+    return errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>;
+  };
 
   /////////
-  const Render = () => {
+  const RenderToggle = () => {
     if (state !== false) {
       return (
         <div className="toggle">
@@ -94,6 +99,8 @@ function Header() {
           <Link className="nav-link" to="/contact">
             <span className="far fa-id-card"></span> Contact
           </Link>
+
+          <LinkDashboard />
         </div>
       );
     } else {
@@ -144,18 +151,15 @@ function Header() {
 
             <LinkDashboard />
           </div>
-          {/* <Link className="nav-link" to="/dashboard">
-            <span className="far fa-id-card"></span> Dashboard
-          </Link> */}
         </div>
       </div>
-      <Render />
+      <RenderToggle />
 
       {/* render modal */}
       <Modal isOpen={modal} toggle={toggleModal}>
         <ModalBody>
           <h1>Login</h1>
-          <ErrorMessage/>
+          <ErrorMessage />
           <FormGroup>
             <Label htmlFor="username">Username</Label>
             <Input

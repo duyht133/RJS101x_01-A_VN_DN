@@ -9,42 +9,22 @@ import { setStatefeedback } from "../redux/reducerForms";
 
 function Contact() {
   // Get data in store
-  const dataFeedback = useSelector((state) => state.form.feedback);    
-  console.log(dataFeedback.firtName)
+  const dataFeedback = useSelector((state) => state.form); // chỗ này nó lấy thẳng hơi ảo
   // Dispatch data to store
   const dispatch = useDispatch();
+  /// tạo biến option để dùng làm giá trị Select
+  const options = [
+    { value: dataFeedback.contactType, label: dataFeedback.contactType },
+    { value: dataFeedback.email, label: dataFeedback.email },
+  ];
+
+  /// các hàm sử lý điều kiện nhập
+  // State
   const [firtName, setFirtname] = useState("");
   const [lastName, setLastname] = useState("");
   const [telNum, setTelnum] = useState("");
   const [email, setEmail] = useState("");
-  const [contactType, setContactType] = useState("Tel.");
-  const [message, setMessage] = useState("");
-  const [agree, setAgree] = useState(false);
-
-  /// hàm nhận sự kiện submit
-  // const handleSubmit = (e) => {
-  //   const stateFeedback = {
-  //     firtName: firtName,
-  //     lastName: lastName,
-  //     telNum: telNum,
-  //     contactType: contactType,
-  //     message: message,
-  //     agree: agree,
-  //   };
-
-  //   console.log(dataFeedback.firtName);
-  // };
-
-  const onChangeInput = (e) => {
-    dispatch(
-      setStatefeedback({
-        nameInput: e.target.name,
-        value: e.target.value,
-      })
-    );
-  };
-
-  /// các hàm sử lý điều kiện nhập
+  /////////////////
   const HandleBlurFirtName = () => {
     if (firtName.length < 3 && firtName.length > 0) {
       return <div>Tên phải lớn hơn 3</div>;
@@ -72,15 +52,36 @@ function Contact() {
     }
   };
 
-  /// tạo biến option để dùng làm giá trị Select
-  const options = [
-    { value: contactType, label: contactType },
-    { value: email, label: email },
-  ];
+  /// hàm setsate mỗi khi input thay đổi
+  const onChangeInput = (event) => {
+    dispatch(
+      setStatefeedback({
+        nameInput: event.target.name,
+        value: event.target.value,
+      })
+    );
+    // khi input thay đổi, sau khi dispath,
+    // set lại state tại components để dùng sử lý điều kiện nhập.
+    setFirtname(dataFeedback.firtName);
+    setLastname(dataFeedback.lastName);
+    setTelnum(dataFeedback.telNum);
+    setEmail(dataFeedback.email);
+  };
 
+  /// hàm nhận sự kiện submit
+  // const handleSubmit = (e) => {
+  //   const stateFeedback = {
+  //     firtName: firtName,
+  //     lastName: lastName,
+  //     telNum: telNum,
+  //     contactType: contactType,
+  //     message: message,
+  //     agree: agree,
+  //   };
+  // };
   return (
     <div className="container">
-      <div className="row row-content">
+     {/*  <div className="row row-content">
         <div className="col-12">
           <h3>Location Information</h3>
         </div>
@@ -117,7 +118,7 @@ function Contact() {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* /////////////////////////// */}
       <div className="row row-content mb-5">
@@ -129,11 +130,11 @@ function Contact() {
             Firtname:
             <input
               type="text"
-              /* value={dataFeedback.firtName} */
-              name="firtName"
+              value={dataFeedback.firtName} // lưu ý value nhận từ state reducerForm
+              name="firtName" // name phải trùng với sate của reducerForm để dispatch cho đúng
               placeholder="Firt Name"
-              onChange={onChangeInput}
-              onBlur={HandleBlurFirtName}
+              onChange={onChangeInput} // gọi hàm onChangeInput để dispatch lên store
+              onBlur={HandleBlurFirtName} // gọi hàm onBlur để sử lý yêu cầu nhập vào
             />
             <div className="color">{HandleBlurFirtName()}</div>
           </label>
@@ -142,10 +143,9 @@ function Contact() {
             Lastname:
             <input
               type="text"
-              value={lastName}
-              name="name"
+              value={dataFeedback.lastName}
+              name="lastName"
               placeholder="Last Name"
-              /* onChange={(event) => setLastname(event.target.value)} */
               onChange={onChangeInput}
               onBlur={HandleBlurlastName}
             />
@@ -156,10 +156,9 @@ function Contact() {
             TelNumber:
             <input
               type="number"
-              value={telNum}
-              name="TelNumber"
+              value={dataFeedback.telNum}
+              name="telNum"
               placeholder="Tel Number"
-              /* onChange={(event) => setTelnum(event.target.value)} */
               onChange={onChangeInput}
               onBlur={HandleBlurTelNum}
             />
@@ -170,10 +169,9 @@ function Contact() {
             Email:
             <input
               type="text"
-              value={email}
+              value={dataFeedback.email}
               name="email"
               placeholder="Email"
-              /* onChange={(event) => setEmail(event.target.value)} */
               onChange={onChangeInput}
               onBlur={HandleBlurEmail}
             />
@@ -186,9 +184,10 @@ function Contact() {
                 <Label check>
                   <Input
                     type="checkbox"
+                    checked={dataFeedback.agree}
+                    value={dataFeedback.agree}
                     name="agree"
-                    checked={agree}
-                    onChange={() => setAgree(!agree)}
+                    onChange={onChangeInput}
                   />
                   {""}
                   <strong>May we contact you?</strong>
@@ -197,10 +196,7 @@ function Contact() {
             </Col>
 
             <Col md={{ size: 3, offset: 1 }}>
-              <Select
-                options={options} /* onChange={() => setContactType(email)} */
-                onChange={onChangeInput}
-              />
+              <Select options={options} />
             </Col>
           </FormGroup>
 
@@ -210,9 +206,8 @@ function Contact() {
               row="12"
               id="message"
               type="textarea"
-              value={message}
+              value={dataFeedback.message}
               name="message"
-              /* onChange={(event) => setMessage(event.target.value)} */
               onChange={onChangeInput}
             />
           </label>
