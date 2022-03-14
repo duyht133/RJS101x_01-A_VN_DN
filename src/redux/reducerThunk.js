@@ -23,7 +23,6 @@ export const userSlice = createSlice({
     isLoading: false,
     currentUser: "",
     errorMessage: "",
-    /* author:false, //3 */
   },
   reducers: {
     // Logout không gọi API mà chỉ cập nhật state
