@@ -15,8 +15,6 @@ function Main() {
   const onSelecdish = (data) => {
     setdishDetail(data);
   };
-  
- /*  const author = useSelector((state)=>{return state.user.author})//1 */
 
   return (
     <>
@@ -33,7 +31,7 @@ function Main() {
 
         <Route path="contact" element={<Contact />} />
         {/* làm tới đây */}
-        <Route path="dashboard" element={<Dashboard /* author={author} */ />}/>
+        <Route path="dashboard" element={<Dashboard />}/>
           
    
       </Routes>

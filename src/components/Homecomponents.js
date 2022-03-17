@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";   /* hook selecTor dùng để get d�
 import { dishes,promotions,leaders } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
 
 
-
 function RenderCard1() {
   // dùng state redux tại đây
   const datadishes = useSelector(dishes)

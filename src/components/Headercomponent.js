@@ -14,7 +14,6 @@ import {
 import { Link } from "react-router-dom";
 import { selectLoading, selectErrorMessage, selectUser } from "../redux/selector";
 import { login } from "../redux/reducerThunk";
-import Dashboard from "./Dashboard";
 import "./App.css";
 
 function Header() {
@@ -64,7 +63,7 @@ function Header() {
   // Route Dashboard
   // nếu đăng nhập thành công sẽ nút Login nếu bấm lần thứ 2 sẽ chuyển đến Dashboard
   const RouteDashboard = () => {
-    if (user == "") {
+    if (user === "") {
       return <div>Login</div>;
     } else {
       return (
@@ -188,8 +187,6 @@ function Header() {
               Remember Me
             </Label>
           </FormGroup>
-
-          {/* lỗi chuyển hướng tại đây */}
           <Button
             type="submit"
             value="submit"
@@ -197,7 +194,6 @@ function Header() {
             onClick={HandleLogin}
             disabled={isLoading}
           >
-            {/* <Link to="/dashboard">Login</Link> */}
             <RouteDashboard />
           </Button>
 
