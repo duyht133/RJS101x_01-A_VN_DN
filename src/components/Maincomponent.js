@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Menu from "./Menucomponents";
@@ -10,19 +10,31 @@ import Home from "./Homecomponents";
 import Dashboard from "./Dashboard";
 import "./App.css";
 
+// import các thunkapi từ reducer
+import { fetchDisheUser,fetchComment,fetchLeaders,fetchPromotions } from "../redux/reducer";
+
+
 function Main() {
   const [dishDetail, setdishDetail] = useState(null);
   const onSelecdish = (data) => {
     setdishDetail(data);
   };
 
+
+  // dishpatch thunk để setState dữ liệu cho toàn bộ trang web
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDisheUser());   
+    dispatch(fetchComment())   ;
+    dispatch(fetchPromotions())   ;
+    dispatch(fetchLeaders()) ;  
+  },[dispatch]);
+
   return (
     <>
       <Header />
 
       <Routes>
-        <Route path="" element={<Home />} />
-
         <Route path="home" element={<Home />} />
 
         <Route path="menu" element={<Menu onSelect={onSelecdish} />} />
@@ -30,7 +42,7 @@ function Main() {
         <Route path="/menu/:dishId" element={<Dishdetail props={dishDetail} />} />
 
         <Route path="contact" element={<Contact />} />
-        {/* làm tới đây */}
+      
         <Route path="dashboard" element={<Dashboard />}/>
           
    

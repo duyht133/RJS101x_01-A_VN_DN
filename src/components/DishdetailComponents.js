@@ -17,7 +17,7 @@ import {
   useDispatch,
 } from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
 import { comments } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
-import { setStatecomment } from "../redux/reducer"; // import actions từ reducer(công nhân)
+import { setStatecomment,postComment } from "../redux/reducer"; // import actions từ reducer(công nhân)
 
 function Dishdetail({ props }) {
   /* hook selecTor dùng để get dữ liệu từ store Redux */
@@ -42,16 +42,18 @@ function Dishdetail({ props }) {
   /* Handle Submit */
   const date = new Date().toString(); // get date right now
   const dispatch = useDispatch(); // dispatch trỏ trực tiếp vào actions reducer để truyền dữ liệu
+
+  const stateComment ={
+     id: Math.random().toString(36).slice(2), // get random id
+     rating: rating,
+     comment: commentInput,
+     author: nameInput,
+     date: date
+   }
   const handleSubmit = () => {
-    const stateComment ={
-      id: Math.random().toString(36).slice(2), // get random id
-      rating: rating,
-      comment: commentInput,
-      author: nameInput,
-      date: date
-    }
     if(stateComment.rating !== '' && stateComment.comment !== ''  && stateComment.author !== ''){
       dispatch(setStatecomment(stateComment));
+      /* dispatch(postComment(stateComment)) */
       toggleModal();
     }
   };
@@ -115,7 +117,7 @@ function Dishdetail({ props }) {
               </div>
 
               <FormGroup>
-                <Label htmlFor="Ten">Rating</Label>
+                <Label htmlFor="id">Rating</Label>
                 <Input type="number" name="id" id="id" onChange={handleRating} />
               </FormGroup>
 
@@ -125,7 +127,7 @@ function Dishdetail({ props }) {
               </FormGroup>
 
               <FormGroup>
-                <Label htmlFor="Ten">Comments</Label>
+                <Label htmlFor="comment">Comments</Label>
                 <Input type="textarea" name="comment" id="comment" onChange={handleCommentInput}/>
               </FormGroup>
               <br></br>

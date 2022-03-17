@@ -35,11 +35,7 @@
       "abbr": "EC",
       "featured": true,
       "description": "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!"
-    },
-    [],
-    [],
-    [],
-    []
+    }
   ],
   "comments": [
     {
@@ -81,6 +77,20 @@
       "comment": "Its your birthday, were gonna party!",
       "author": "25 Cent",
       "date": "2013-12-02T17:57:28.556094Z"
+    },
+    {
+      "id": "yjtenz00ve",
+      "rating": "12",
+      "comment": "asdf",
+      "author": "23",
+      "date": "Fri Mar 18 2022 01:45:29 GMT+0700 (Giờ Đông Dương)"
+    },
+    {
+      "id": "nhwfj149rpm",
+      "rating": "23",
+      "comment": "sdfg",
+      "author": "dfgsd",
+      "date": "Fri Mar 18 2022 01:49:52 GMT+0700 (Giờ Đông Dương)"
     }
   ],
   "promotions": [
@@ -134,48 +144,6 @@
       "price": "2.99",
       "featured": false,
       "description": "A quintessential ConFusion experience, is it a vada or is it a donut?"
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
-    },
-    {
-      "id": 15
-    },
-    {
-      "id": 16
-    },
-    {
-      "id": 17
     }
   ]
 }

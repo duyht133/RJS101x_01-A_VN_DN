@@ -6,7 +6,7 @@ export const login = createAsyncThunk("user/login", async (data, { rejectWithVal
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-    }, 
+    },
     body: JSON.stringify(data),
   });
 

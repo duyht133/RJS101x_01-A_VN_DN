@@ -1,12 +1,13 @@
 import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
-import { useSelector } from "react-redux";   /* hook selecTor dùng để get dữ liệu từ store Redux */
-import { dishes,promotions,leaders } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
+import { useSelector } from "react-redux"; /* hook selecTor dùng để get dữ liệu từ store Redux */
+import { dishes, promotions, leaders } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
+
 
 
 function RenderCard1() {
+  const datadishes = useSelector(dishes);
   // dùng state redux tại đây
-  const datadishes = useSelector(dishes)
   return (
     <div>
       <div>
@@ -14,7 +15,9 @@ function RenderCard1() {
           <CardImg src={datadishes[0].image} alt={datadishes[0].name} />
           <CardBody>
             <CardTitle>{datadishes[0].name}</CardTitle>
-            {datadishes[0].designation ? <CardSubtitle>{datadishes[0].designation}</CardSubtitle> : null}
+            {datadishes[0].designation ? (
+              <CardSubtitle>{datadishes[0].designation}</CardSubtitle>
+            ) : null}
             <CardText>{datadishes[0].description}</CardText>
           </CardBody>
         </Card>
@@ -25,28 +28,26 @@ function RenderCard1() {
 
 function RenderCard2() {
   // dùng state redux tại đây
-  const datapromotions = useSelector(promotions)
+  const datapromotions = useSelector(promotions);
   return (
     <div>
-      {datapromotions.map((e) => (
-        <div key={e.id}>
-          <Card >
-            <CardImg src={e.image} alt={e.name} />
+        <div key={datapromotions[0].id}>
+          <Card>
+            <CardImg src={datapromotions[0].image} alt={datapromotions[0].name} />
             <CardBody>
-              <CardTitle>{e.name}</CardTitle>
-              {e.designation ? <CardSubtitle>{e.designation}</CardSubtitle> : null}
-              <CardText>{e.description}</CardText>
+              <CardTitle>{datapromotions[0].name}</CardTitle>
+              {datapromotions[0].designation ? <CardSubtitle>{datapromotions[0].designation}</CardSubtitle> : null}
+              <CardText>{datapromotions[0].description}</CardText>
             </CardBody>
           </Card>
         </div>
-      ))}
     </div>
   );
 }
 
 function RenderCard3() {
   // dùng state redux tại đây
-  const datapleaders = useSelector(leaders)
+  const datapleaders = useSelector(leaders);
 
   return (
     <div>
@@ -55,7 +56,9 @@ function RenderCard3() {
           <CardImg src={datapleaders[3].image} alt={datapleaders[3].name} />
           <CardBody>
             <CardTitle>{datapleaders[3].name}</CardTitle>
-            {datapleaders[3].designation ? <CardSubtitle>{datapleaders[3].designation}</CardSubtitle> : null}
+            {datapleaders[3].designation ? (
+              <CardSubtitle>{datapleaders[3].designation}</CardSubtitle>
+            ) : null}
             <CardText>{datapleaders[3].description}</CardText>
           </CardBody>
         </Card>
@@ -65,6 +68,7 @@ function RenderCard3() {
 }
 
 function Home() {
+
   return (
     <div className="container">
       <div className="row align-items-start">
