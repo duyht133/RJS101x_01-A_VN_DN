@@ -35,6 +35,7 @@ function Main() {
       <Header />
 
       <Routes>
+        <Route path="/"/>
         <Route path="home" element={<Home />} />
 
         <Route path="menu" element={<Menu onSelect={onSelecdish} />} />

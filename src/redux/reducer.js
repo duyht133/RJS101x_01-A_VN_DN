@@ -8,18 +8,27 @@ export const fetchDisheUser = createAsyncThunk("user/Dishdetail", async () => {
   });
 });
 
+///thử tại đây
+export const postComment = createAsyncThunk("user/PostComments", async (data) => {
+  return axios({
+    method: "POST",
+    url: "http://localhost:3001/comments",
+    data: {
+      rating:data.rating,
+      comment:data.comment,
+      author:data.author,
+      date:data.date,
+    }
+  }).then((res) => {
+    return res.data;
+  });
+});
+////
 export const fetchComment = createAsyncThunk("user/Comments", async () => {
   return axios.get("http://localhost:3001/comments").then((res) => {
     return res.data;
   });
 });
-
-
-///thử tại đây
-export const postComment = createAsyncThunk("user/Comments", async (data) => {
-  return axios.post("http://localhost:3001/comments",data)
-});
-////
 
 
 export const fetchPromotions = createAsyncThunk("user/Promotions", async () => {
@@ -36,22 +45,22 @@ export const fetchLeaders = createAsyncThunk("user/leaders", async () => {
 export const DataContactReducer = createSlice({
   name: "contact",
   initialState: {
-    dishes: null,
-    comments: null,
-    promotions: null,
-    leaders: null,
+    dishes: "",
+    comments: '',
+    promotions: '',
+    leaders: '',
 
     isLoading: false,
     errorMessage: "",
   },
-  reducers: {
+  /* reducers: {
     // actions này để thực hiện hành động thêm mới comments.
     setStatecomment: (state, action) => {
       const newList = { ...state }; // ... là toán tử spread es6 để sao chép lại dữ liệu state
       newList.comments = [...newList.comments, action.payload];
       return newList;
     },
-  },
+  }, */
   extraReducers: {
     /////Dishes
     [fetchDisheUser.pending]: (state) => {
@@ -109,9 +118,11 @@ export const DataContactReducer = createSlice({
 
 
     ///postcomments
-    /* [postComment.fulfilled]: (state, action) => {
-      state.comments = action.payload
-    }, */
+    [postComment.fulfilled]: (state, action) => {
+      const newList = { ...state }; // ... là toán tử spread es6 để sao chép lại dữ liệu state
+      newList.comments = [...newList.comments, action.payload];
+      return newList;
+    },
     ////
   },
 });

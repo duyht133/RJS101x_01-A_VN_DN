@@ -79,18 +79,18 @@
       "date": "2013-12-02T17:57:28.556094Z"
     },
     {
-      "id": "yjtenz00ve",
-      "rating": "12",
-      "comment": "asdf",
-      "author": "23",
-      "date": "Fri Mar 18 2022 01:45:29 GMT+0700 (Giờ Đông Dương)"
+      "rating": "1",
+      "comment": "test",
+      "author": "test",
+      "date": "Sat Mar 19 2022 01:42:12 GMT+0700 (Giờ Đông Dương)",
+      "id": 5
     },
     {
-      "id": "nhwfj149rpm",
-      "rating": "23",
-      "comment": "sdfg",
-      "author": "dfgsd",
-      "date": "Fri Mar 18 2022 01:49:52 GMT+0700 (Giờ Đông Dương)"
+      "rating": "3",
+      "comment": "test 2",
+      "author": "test 2",
+      "date": "Sat Mar 19 2022 01:51:42 GMT+0700 (Giờ Đông Dương)",
+      "id": 6
     }
   ],
   "promotions": [

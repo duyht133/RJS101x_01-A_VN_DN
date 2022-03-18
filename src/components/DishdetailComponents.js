@@ -44,7 +44,7 @@ function Dishdetail({ props }) {
   const dispatch = useDispatch(); // dispatch trỏ trực tiếp vào actions reducer để truyền dữ liệu
 
   const stateComment ={
-     id: Math.random().toString(36).slice(2), // get random id
+     /* id: Math.random().toString(36).slice(2), // get random id */
      rating: rating,
      comment: commentInput,
      author: nameInput,
@@ -52,8 +52,8 @@ function Dishdetail({ props }) {
    }
   const handleSubmit = () => {
     if(stateComment.rating !== '' && stateComment.comment !== ''  && stateComment.author !== ''){
-      dispatch(setStatecomment(stateComment));
-      /* dispatch(postComment(stateComment)) */
+      /* dispatch(setStatecomment(stateComment)); */
+      dispatch(postComment(stateComment))
       toggleModal();
     }
   };
