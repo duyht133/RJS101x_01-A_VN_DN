@@ -52,8 +52,8 @@ function Dishdetail({ props }) {
    }
   const handleSubmit = () => {
     if(stateComment.rating !== '' && stateComment.comment !== ''  && stateComment.author !== ''){
-      /* dispatch(setStatecomment(stateComment)); */
-      dispatch(postComment(stateComment))
+      /* dispatch(setStatecomment(stateComment)); */ //dishpatch trực tiếp vào state qua reducers
+      dispatch(postComment(stateComment)) //dishpatch gọi Api trả giá trị về state qua extraReducers
       toggleModal();
     }
   };
@@ -136,6 +136,7 @@ function Dishdetail({ props }) {
               </Button>
             </ModalBody>
           </Modal>
+
         </div>
       </div>
     </div>

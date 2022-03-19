@@ -91,6 +91,20 @@
       "author": "test 2",
       "date": "Sat Mar 19 2022 01:51:42 GMT+0700 (Giờ Đông Dương)",
       "id": 6
+    },
+    {
+      "rating": "3",
+      "comment": " test 4",
+      "author": "test 3",
+      "date": "Sat Mar 19 2022 22:50:47 GMT+0700 (Giờ Đông Dương)",
+      "id": 7
+    },
+    {
+      "rating": "33",
+      "comment": "fgsdfgsd",
+      "author": "tét 4",
+      "date": "Sun Mar 20 2022 01:09:36 GMT+0700 (Giờ Đông Dương)",
+      "id": 8
     }
   ],
   "promotions": [

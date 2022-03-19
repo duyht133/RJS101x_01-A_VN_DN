@@ -28,7 +28,7 @@ function Main() {
     dispatch(fetchComment())   ;
     dispatch(fetchPromotions())   ;
     dispatch(fetchLeaders()) ;  
-  },[dispatch]);
+  },[]);
 
   return (
     <>

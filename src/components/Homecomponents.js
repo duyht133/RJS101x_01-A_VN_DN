@@ -14,7 +14,7 @@ function RenderCard1() {
         <Card key={datadishes[0].id}>
           <CardImg src={datadishes[0].image} alt={datadishes[0].name} />
           <CardBody>
-            <CardTitle>{datadishes[0].name}</CardTitle>
+            <CardTitle>{datadishes[0].name || datadishes}</CardTitle> {/* tại đây nếu không get được Api thì sẽ hiển thị thông báo lỗi */}
             {datadishes[0].designation ? (
               <CardSubtitle>{datadishes[0].designation}</CardSubtitle>
             ) : null}
@@ -35,7 +35,7 @@ function RenderCard2() {
           <Card>
             <CardImg src={datapromotions[0].image} alt={datapromotions[0].name} />
             <CardBody>
-              <CardTitle>{datapromotions[0].name}</CardTitle>
+              <CardTitle>{datapromotions[0].name || datapromotions}</CardTitle>
               {datapromotions[0].designation ? <CardSubtitle>{datapromotions[0].designation}</CardSubtitle> : null}
               <CardText>{datapromotions[0].description}</CardText>
             </CardBody>
@@ -55,7 +55,7 @@ function RenderCard3() {
         <Card key={datapleaders[3].id}>
           <CardImg src={datapleaders[3].image} alt={datapleaders[3].name} />
           <CardBody>
-            <CardTitle>{datapleaders[3].name}</CardTitle>
+            <CardTitle>{datapleaders[3].name || datapleaders}</CardTitle>
             {datapleaders[3].designation ? (
               <CardSubtitle>{datapleaders[3].designation}</CardSubtitle>
             ) : null}
@@ -68,7 +68,6 @@ function RenderCard3() {
 }
 
 function Home() {
-
   return (
     <div className="container">
       <div className="row align-items-start">

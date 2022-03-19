@@ -6,10 +6,12 @@ import { dishes } from "../redux/selector"; // sử dụng state của redux tha
 
 function Menu({ onSelect }) {
   const dataDishes = useSelector(dishes);
-  return (
-    <>
-      <Link to="/home">Home</Link> | <Link to="/menu">Menu</Link>
-      {dataDishes.map((data) => (
+ 
+  const HandleDishes = () => {
+    if(dataDishes == "Request failed with status code 404"){
+      return(<div>{dataDishes}</div>)
+    }else{
+      return dataDishes.map((data) => (
         <Link to={`/menu/${data.id}`} key={data.id}>
           <div className="col-12 col-md-5 m-1 menu">
             <Card
@@ -24,7 +26,14 @@ function Menu({ onSelect }) {
             </Card>
           </div>
         </Link>
-      ))}
+      ))
+    }
+  }
+
+  return (
+    <>
+      <Link to="/home">Home</Link> | <Link to="/menu">Menu</Link>   
+      <HandleDishes/>
     </>
   );
 }
