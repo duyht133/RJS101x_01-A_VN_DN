@@ -81,7 +81,7 @@ export const DataContactReducer = createSlice({
       state.isLoading = false;
       state.dishes = action.payload;
     },
-    //ở đây nó sẽ bắc lỗi nhưng vì đã lọc điều kiện khi gọi API nên không cần
+    //ở đây nếu rejected thì nó sẽ bắc lỗi, nhưng vì đã lọc điều kiện khi gọi API nên không cần
     /* [fetchDisheUser.rejected]: (state, action) => { 
       state.isLoading = false;
     }, */

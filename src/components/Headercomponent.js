@@ -16,7 +16,8 @@ import { selectLoading, selectErrorMessage, selectUser } from "../redux/selector
 import { login } from "../redux/reducerThunk";
 import "./App.css";
 
-function Header() {
+function Header({ getAnimation }) {
+  // lấy vào hiệu ứng animation
   // useDispatch
   const dispatch = useDispatch();
   // Select data from store
@@ -123,19 +124,19 @@ function Header() {
         </Link>
 
         <div className="nav">
-          <Link className="nav-link" to="/home">
+          <Link className="nav-link" to="/home" onClick={getAnimation}>
             <span className="fa fa-home fa-lg"></span> Home
           </Link>
 
-          <Link className="nav-link" to="/aboutus">
+          <Link className="nav-link" to="/aboutus" onClick={getAnimation}>
             <span className="fa fa-info fa-lg"></span> About Us
           </Link>
 
-          <Link className="nav-link" to="/menu">
+          <Link className="nav-link" to="/menu" onClick={getAnimation}>
             <span className="fa fa-list fa-lg"></span> Menu
           </Link>
 
-          <Link className="nav-link" to="/contact">
+          <Link className="nav-link" to="/contact" onClick={getAnimation}>
             <span className="far fa-id-card"></span> Contact
           </Link>
 
@@ -152,6 +153,7 @@ function Header() {
           </div>
         </div>
       </div>
+
       <RenderToggle />
 
       {/* render modal */}
@@ -208,10 +210,10 @@ function Header() {
       </Modal>
 
       {/* Banner */}
-      <Jumbotron>
+      <Jumbotron style={{ backgroundColor: "#c3b7ff",height: "200px"}}>
         <div className="container">
           <div className="row row-header">
-            <div className="col-12 col-sm-6">
+            <div className="col-12 col-sm-6 ">
               <h1>Ristonrate con funsion</h1>
               <p>quan an nha hang tiec cuoi sang trong</p>
             </div>

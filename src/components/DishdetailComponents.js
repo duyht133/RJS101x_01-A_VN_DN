@@ -105,7 +105,7 @@ function Dishdetail({ props }) {
         <Info />
         <Comments />
         
-        {/* render modal */}
+        {/* render modal */} 
         <div>
           <Modal isOpen={modal} toggle={toggleModal}>
             <ModalBody>

@@ -1,4 +1,5 @@
 import Main from "./Maincomponent";
+import "./App.css";
 
 
 
