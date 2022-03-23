@@ -17,7 +17,8 @@ import {
   useDispatch,
 } from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
 import { comments } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
-import { setStatecomment,postComment } from "../redux/reducer"; // import actions từ reducer(công nhân)
+import { setStatecomment, postComment } from "../redux/reducer"; // import actions từ reducer(công nhân)
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 function Dishdetail({ props }) {
   /* hook selecTor dùng để get dữ liệu từ store Redux */
@@ -33,9 +34,9 @@ function Dishdetail({ props }) {
   /* Toggle modal */
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
-    setRating("")
-    setNameInput("")
-    setCommentInput("")
+    setRating("");
+    setNameInput("");
+    setCommentInput("");
     setModal(!modal);
   };
 
@@ -43,17 +44,17 @@ function Dishdetail({ props }) {
   const date = new Date().toString(); // get date right now
   const dispatch = useDispatch(); // dispatch trỏ trực tiếp vào actions reducer để truyền dữ liệu
 
-  const stateComment ={
-     /* id: Math.random().toString(36).slice(2), // get random id */
-     rating: rating,
-     comment: commentInput,
-     author: nameInput,
-     date: date
-   }
+  const stateComment = {
+    /* id: Math.random().toString(36).slice(2), // get random id */
+    rating: rating,
+    comment: commentInput,
+    author: nameInput,
+    date: date,
+  };
   const handleSubmit = () => {
-    if(stateComment.rating !== '' && stateComment.comment !== ''  && stateComment.author !== ''){
+    if (stateComment.rating !== "" && stateComment.comment !== "" && stateComment.author !== "") {
       /* dispatch(setStatecomment(stateComment)); */ //dishpatch trực tiếp vào state qua reducers
-      dispatch(postComment(stateComment)) //dishpatch gọi Api trả giá trị về state qua extraReducers
+      dispatch(postComment(stateComment)); //dishpatch gọi Api trả giá trị về state qua extraReducers
       toggleModal();
     }
   };
@@ -63,11 +64,18 @@ function Dishdetail({ props }) {
     if (props != null) {
       return (
         <div>
-          <Card className="dishDetail">
-            <CardImg className="imageDish" src={props.image} alt={props.image}></CardImg>
-            <CardTitle>{props.name}</CardTitle>
-            <CardText>{props.description}</CardText>
-          </Card>
+          <FadeTransform   /* chuyển đổi hoạt ảnh */
+            in
+            transformProps={{
+              exitTransition: "scale(0.5) translateY(-50%)",
+            }}
+          >
+            <Card className="dishDetail">
+              <CardImg className="imageDish" src={props.image} alt={props.image}></CardImg>
+              <CardTitle>{props.name}</CardTitle>
+              <CardText>{props.description}</CardText>
+            </Card>
+          </FadeTransform>
         </div>
       );
     } else return <div></div>;
@@ -81,18 +89,24 @@ function Dishdetail({ props }) {
           <div className="comment">
             <h4>Comments</h4>
             <ul className="list-unstyled">
-              {dataComments.map((e) => {
-                return (
-                  <li key={e.id}>
-                    <p>User: {e.author}</p>
-                    <p>Comment: {e.comment}</p>
-                    <p>Date: {e.date}</p>
-                  </li>
-                );
-              })}
+              <Stagger in>
+                {dataComments.map((e) => {
+                  return (
+                    <Fade in>
+                      <li key={e.id}>
+                        <p>User: {e.author}</p>
+                        <p>Comment: {e.comment}</p>
+                        <p>Date: {e.date}</p>
+                      </li>
+                    </Fade>
+                  );
+                })}
+              </Stagger>
             </ul>
           </div>
-          <Button onClick={toggleModal}  className="w-75">Submit</Button>
+          <Button onClick={toggleModal} className="w-75">
+            Submit
+          </Button>
         </div>
       );
     } else return <div></div>;
@@ -104,8 +118,8 @@ function Dishdetail({ props }) {
       <div className="dish">
         <Info />
         <Comments />
-        
-        {/* render modal */} 
+
+        {/* render modal */}
         <div>
           <Modal isOpen={modal} toggle={toggleModal}>
             <ModalBody>
@@ -123,12 +137,12 @@ function Dishdetail({ props }) {
 
               <FormGroup>
                 <Label htmlFor="Ten">Your Name</Label>
-                <Input type="text" name="Ten" id="Ten" onChange={handleNameInput}/>
+                <Input type="text" name="Ten" id="Ten" onChange={handleNameInput} />
               </FormGroup>
 
               <FormGroup>
                 <Label htmlFor="comment">Comments</Label>
-                <Input type="textarea" name="comment" id="comment" onChange={handleCommentInput}/>
+                <Input type="textarea" name="comment" id="comment" onChange={handleCommentInput} />
               </FormGroup>
               <br></br>
               <Button onClick={handleSubmit} type="submit" value="submit" color="primary">
@@ -136,7 +150,6 @@ function Dishdetail({ props }) {
               </Button>
             </ModalBody>
           </Modal>
-
         </div>
       </div>
     </div>
