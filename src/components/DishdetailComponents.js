@@ -11,13 +11,13 @@ import {
   Input,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   useSelector,
   useDispatch,
 } from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
 import { comments } from "../redux/selector"; // sử dụng state của redux thay vì import trực tiếp
-import { setStatecomment, postComment } from "../redux/reducer"; // import actions từ reducer(công nhân)
+import { postComment } from "../redux/reducer"; // import actions từ reducer(công nhân)
 import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 function Dishdetail({ props }) {

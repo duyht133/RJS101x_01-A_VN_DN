@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ function Menu({ onSelect }) {
   const dataDishes = useSelector(dishes);
 
   const HandleDishes = () => {
-    if (dataDishes == "Request failed with status code 404") {
+    if (dataDishes === "Request failed with status code 404") {
       return <div>{dataDishes}</div>;
     } else {
       return dataDishes.map((data) => (
