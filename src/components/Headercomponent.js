@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <React.Fragment>
             <div className="header">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/home">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/3/39/FreeCodeCamp_logo.png"
                   height="40"
@@ -17,7 +17,7 @@ class Header extends Component {
 
               <div className="nav">
                   <div>
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/home">
                       <span className="fas fa-users">Nhân viên</span> 
                     </Link>
                   </div>

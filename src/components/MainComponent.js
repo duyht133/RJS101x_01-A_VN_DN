@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-
 // import Components.
 import Headercomponent from "./Headercomponent.js";
 import StaffListComponent from "./StaffListComponent";
@@ -10,10 +9,9 @@ import Salary from "./Salary";
 import Footercomponent from "./Footercomponent.js";
 
 const MainComponent = () => {
-  // tạo state với giá trị khởi tạo null.
+  // sử lý sự kiện renderdish
   const [staff, setStaff] = useState(null);
-
-  // tạo function cài lại giá trị state.
+  // setState.
   const onSelectStaff = (staff) => {
     setStaff(staff);
   };
@@ -22,7 +20,8 @@ const MainComponent = () => {
       <Headercomponent />
 
       <Routes>
-        <Route path="/" element={<StaffListComponent selectStaff={onSelectStaff} />} />
+        <Route path="/" />
+        <Route path="home" element={<StaffListComponent selectStaff={onSelectStaff} />} />
         <Route path="/staff/:staffId" element={<RenderDish staff={staff} />} />
         <Route path="department" element={<Department />} />
         <Route path="salary" element={<Salary />} />

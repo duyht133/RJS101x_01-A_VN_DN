@@ -6,29 +6,11 @@ import {
 } from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
 import { Modal, Button, ModalBody, FormGroup, Label, Input } from "reactstrap";
 import "../App.css";
-import { setStatecontact } from "../redux/reducer"; // import actions từ reducer(công nhân)
+import { setStatecontact, contactReducerThunk } from "../redux/reducer"; // import actions từ reducer(công nhân)
 
 const StaffListComponent = ({ selectStaff }) => {
   /* tạo biến dispatch */
   const dispatch = useDispatch();
-  ///////////////////////////////////
-  /* get state từ reducer */
-  // get data staffs
-  const dataStaffs = useSelector((data) => {
-    //useSelector() chọc thẳng vào biến dataContact ở store để lấy state từ biến initialState trong reducer
-    return data.dataContact.staffs;
-  });
-  // get data department
-  const dataDepartment = useSelector((data) => {
-    return data.dataContact.departments;
-  });
-  ///////////////////////////////////
-  /* state option select */
-  const [option, setOptions] = useState(() => {
-    return dataDepartment.map((depart) => {
-      return depart.name;
-    });
-  });
   ///////////////////////////////////
   /* get data on use Input */
   const [dataID, setdataID] = useState("");
@@ -38,8 +20,8 @@ const StaffListComponent = ({ selectStaff }) => {
   const [dataSelect, setdataSelect] = useState("");
   const [dataSalary, setdataSalary] = useState("");
   const [dataDaysOff, setdataDaysOff] = useState("");
-  // data img
-  const [dataImg, setdataimg] = useState("https://www.cse.ust.hk/~muppala/img/muppala.jpg");
+  const [dataOverTime, setdataOverTime] = useState("");
+  const [dataSalaryPayment, setdataSalaryPayment] = useState("");
   //get data ID
   const getdataID = (event) => setdataID(event.target.value);
   // get data Name
@@ -55,10 +37,10 @@ const StaffListComponent = ({ selectStaff }) => {
   //get data days off
   const getdataDaysOff = (event) => setdataDaysOff(event.target.value);
   // get data overTime
-  const [dataOverTime, setdataOverTime] = useState("");
-  const getdataOvertime = (event) => {
-    setdataOverTime(event.target.value);
-  };
+  const getdataOvertime = (event) => setdataOverTime(event.target.value);
+  // get data SalaryPay
+  const getdataSalaryPay = (event) => setdataSalaryPayment(event.target.value);
+
   ///////////////////////////////////
   /* state toggle */
   const [modal, setModal] = useState(false);
@@ -69,6 +51,7 @@ const StaffListComponent = ({ selectStaff }) => {
     setdataBirth("");
     setdataInjob("");
     setFormblur(false);
+    setdataSalaryPayment("");
     // toggle modal
     setModal(!modal);
   };
@@ -79,12 +62,13 @@ const StaffListComponent = ({ selectStaff }) => {
       id: dataID,
       name: dataName,
       doB: dataBirth,
+      salaryScale: dataSalary,
       startDate: dataInjob,
       department: dataSelect,
-      salaryScale: dataSalary,
       annualLeave: dataDaysOff,
       overTime: dataOverTime,
-      image: dataImg,
+      image: "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
+      salary: dataSalaryPayment,
     };
     if (
       // so sánh điều kiện input nhập vào nếu nhập đủ các trường thì cho phép dispatch lên store.
@@ -93,17 +77,36 @@ const StaffListComponent = ({ selectStaff }) => {
       stateContact.doB != "" &&
       stateContact.startDate != ""
     ) {
-      dispatch(setStatecontact(stateContact));
+      /* dispatch(setStatecontact(stateContact)); */
+      
+      console.log("thanhcong")
+
       toggleModal();
     } else AddBlur(); // gọi trực tiếp từ validate form
   };
   ///////////////////////////////////
-  /* Data search */
-  const [staffs, setStaffs] = useState(dataStaffs); // staffs ở đây
-  // chạy side effect tại đây để r-render lại dữ liệu sau khi dispatch.
+  /* state option select */ // lấy từ staffs
+  /* Data Contact and search and options */
+  //get data contact
+  const dataContact = useSelector((data) => data.dataContact.contact);
+  const [contact, setcontact] = useState(dataContact);
   useEffect(() => {
-    setStaffs(dataStaffs);
-  }, [dataStaffs]);
+    setcontact(dataContact);
+    console.log("load");
+  }, [dataContact]);
+
+  // Options Selector
+  const dataDepartments = useSelector((data) => {
+    return data.dataContact.departments;
+  });
+  const [option, setOptions] = useState(() => {
+    return dataDepartments.map((depart) => {
+      return depart.name;
+    });
+  });
+
+
+
   // tạo state để lưu trữ giá trị input search
   const [dataSearch, setdataSearch] = useState("");
   const getdataSearch = (event) => {
@@ -112,16 +115,17 @@ const StaffListComponent = ({ selectStaff }) => {
   /* Button search onclick */
   const btSearch = () => {
     // tạo 1 biến mới để lưu dataStaffs get từ store
-    const listFilter = dataStaffs;
+    const listFilter = dataContact;
     // filter lọc  mảng với điều kiện chỉ định,nếu thỏa điều kiện sẽ tạo ra các phần tử đã lọc thành mảng con
     // includes kiểm tra 1 điều kiện đầu vào có nằm trong 1 mảng, nếu đúng trả về true
-    const newListStaff = listFilter.filter((staff) => {
-      return staff.name.toLowerCase().includes(dataSearch.toLowerCase());
+    const newListStaff = listFilter.filter((contact) => {
+      return contact.name.toLowerCase().includes(dataSearch.toLowerCase());
     });
-    setStaffs(newListStaff); //set state staffs là 1 dữ liệu mới đã lọc
+    setcontact(newListStaff); //set state staffs là 1 dữ liệu mới đã lọc
   };
+
   ///////////////////////////////////
-  /* validate form */
+  /* Validate form */
   // tạo state cho validate form
   const [formblur, setFormblur] = useState(false);
   // hiển thị Blur validate form được gọi ở dòng 121 khi button add được onclick
@@ -151,25 +155,26 @@ const StaffListComponent = ({ selectStaff }) => {
   };
 
   ///////////////////////////////////
+
   /* tạo biến render */
   const Render = () => {
     // tạo biến uidataState
-    const uidataState = (staff) => (
-      <div className="col-lg-2 col-md-4 col-sm-6 staff" key={staff.id}>
-        <Link to={`/staff/${staff.id} || ${staff.name}`}>
+    const uidataState = (contact) => (
+      <div className="col-lg-2 col-md-4 col-sm-6 staff" key={contact.id}>
+        <Link to={`/staff/${contact.id} || ${contact.name}`}>
           <div
             onClick={() => {
               // lắng nghe sự kiện onclick truyền dự liệu vào function selectStaff ở main
-              selectStaff(staff);
+              selectStaff(contact);
             }}
           >
-            <img className="img" src={staff.image} alt={staff.name} />
-            <div className="name">{staff.name}</div>
+            <img className="img" src={contact.image} alt={contact.name} />
+            <div className="name">{contact.name}</div>
           </div>
         </Link>
       </div>
     );
-    return staffs.map(uidataState); // lấy biến staffs từ state data search
+    return contact.map(uidataState); // lấy biến staffs từ state data search
   };
 
   ///////////////////////////////////
@@ -295,6 +300,16 @@ const StaffListComponent = ({ selectStaff }) => {
                 name="Songaydalamthem"
                 id="Songaydalamthem"
                 onChange={getdataOvertime}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="Luongduoctra">Lương được trả:</Label>
+              <Input
+                type="number"
+                name="Luongduoctra"
+                id="Luongduoctra"
+                onChange={getdataSalaryPay}
               />
             </FormGroup>
             <br></br>

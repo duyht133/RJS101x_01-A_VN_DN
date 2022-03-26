@@ -1,23 +1,51 @@
-import { createSlice } from "@reduxjs/toolkit"; // import createSlice từ reduxToolkit để tạo mới 1 reducer(slice)
-import { STAFFS as staffs } from "../shared/staffs";
-import { DEPARTMENTS as departments } from "../shared/staffs";
+import { createSlice,createAsyncThunk  } from "@reduxjs/toolkit"; // import createSlice từ reduxToolkit để tạo mới 1 reducer(slice)
+import axios from "axios";
+
+/* get request api contact */
+export const contactReducerThunk = createAsyncThunk("user/contact", async () => {
+  return axios.get("http://localhost:3001/contact").then((res) => {
+    return res.data;
+  }).catch((error)=> { // test error tại đây
+    if(error){
+     return error.message;
+    }
+  });
+});
+//get request api department
+export const departmentsReducerThunk = createAsyncThunk("user/departments", async () => {
+  return axios.get("http://localhost:3001/department").then((res) => {
+    return res.data;
+  }).catch((error)=> { // test error tại đây
+    if(error){
+     return error.message;
+    }
+  });
+});
 
 export const contactReducer = createSlice({
   name: "contact",
   initialState: {
-    staffs,
-    departments,
+    departments:"",
+    contact:"",
+    isLoading: false,
   },
-  reducers: {
-    // reducer ở đây chính là công nhân thực thi các action
-    setStatecontact: (state, action) => {
-      // state ở đây chính là dữ liệu trong initialState
-      // action là trạng thái dispatch truyền vào từ sự kiện bên ngoài từ UI.
-      const newList = { ...state }; // ... là toán tử spread es6 để sao chép lại dữ liệu state
-      newList.staffs = [...newList.staffs, action.payload];
-      return newList;
+  extraReducers:{
+    [contactReducerThunk.pending]: (state) => {
+      state.isLoading = true;
     },
-  },
+    [contactReducerThunk.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.contact = action.payload;
+    },
+
+    [departmentsReducerThunk.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [departmentsReducerThunk.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.departments = action.payload;
+    },
+  }
 });
 
 // export theo kiểu bắc buộc.
