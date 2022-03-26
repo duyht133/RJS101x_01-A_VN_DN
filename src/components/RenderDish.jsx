@@ -1,8 +1,23 @@
 import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
 import "../App.css";
+import {
+  useSelector,
+  useDispatch,
+} from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
+import { deleteContact } from "../redux/reducer";
+import { contactReducerThunk } from "../redux/reducer";
+import React, { useState, useEffect } from "react";
 
 const RenderDish = ({ staff }) => {
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    if (staff.id !== null) {
+      /* confirm("Bạn có muốn xóa") */
+      dispatch(deleteContact(staff));
+      window.location.reload();
+    }
+  };
   // nhận staff từ mainComponent
   const Render = () => {
     if (staff != null) {
@@ -21,6 +36,9 @@ const RenderDish = ({ staff }) => {
               <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
               <p>Số ngày đã làm thêm: {staff.overTime}</p>
             </div>
+            <div>
+              <button onClick={handleDelete}><Link to="/">Delete</Link></button>
+            </div>
           </div>
         </div>
       );
@@ -30,7 +48,7 @@ const RenderDish = ({ staff }) => {
   };
 
   return (
-    // sử dụng bootstaps
+    // sử dụng bootstraps
     <div>
       <div className="container">
         <Link to="/home">Nhân Viên</Link> |{staff.name}

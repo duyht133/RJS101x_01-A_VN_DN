@@ -6,6 +6,9 @@ import {
 } from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
 import { Modal, Button, ModalBody, FormGroup, Label, Input } from "reactstrap";
 import "../App.css";
+import {postContact} from "../redux/reducer"
+
+
 import { setStatecontact, contactReducerThunk } from "../redux/reducer"; // import actions từ reducer(công nhân)
 
 const StaffListComponent = ({ selectStaff }) => {
@@ -39,7 +42,7 @@ const StaffListComponent = ({ selectStaff }) => {
   // get data overTime
   const getdataOvertime = (event) => setdataOverTime(event.target.value);
   // get data SalaryPay
-  const getdataSalaryPay = (event) => setdataSalaryPayment(event.target.value);
+  /* const getdataSalaryPay = (event) => setdataSalaryPayment(event.target.value); */
 
   ///////////////////////////////////
   /* state toggle */
@@ -51,7 +54,7 @@ const StaffListComponent = ({ selectStaff }) => {
     setdataBirth("");
     setdataInjob("");
     setFormblur(false);
-    setdataSalaryPayment("");
+    /* setdataSalaryPayment(""); */
     // toggle modal
     setModal(!modal);
   };
@@ -68,7 +71,7 @@ const StaffListComponent = ({ selectStaff }) => {
       annualLeave: dataDaysOff,
       overTime: dataOverTime,
       image: "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      salary: dataSalaryPayment,
+      /* salary: dataSalaryPayment, */
     };
     if (
       // so sánh điều kiện input nhập vào nếu nhập đủ các trường thì cho phép dispatch lên store.
@@ -77,10 +80,8 @@ const StaffListComponent = ({ selectStaff }) => {
       stateContact.doB != "" &&
       stateContact.startDate != ""
     ) {
-      /* dispatch(setStatecontact(stateContact)); */
-      
+      dispatch(postContact(stateContact));
       console.log("thanhcong")
-
       toggleModal();
     } else AddBlur(); // gọi trực tiếp từ validate form
   };
@@ -161,7 +162,7 @@ const StaffListComponent = ({ selectStaff }) => {
     // tạo biến uidataState
     const uidataState = (contact) => (
       <div className="col-lg-2 col-md-4 col-sm-6 staff" key={contact.id}>
-        <Link to={`/staff/${contact.id} || ${contact.name}`}>
+        <Link to={`/contact/${contact.id}`}>
           <div
             onClick={() => {
               // lắng nghe sự kiện onclick truyền dự liệu vào function selectStaff ở main
@@ -303,7 +304,7 @@ const StaffListComponent = ({ selectStaff }) => {
               />
             </FormGroup>
 
-            <FormGroup>
+           {/*  <FormGroup>
               <Label htmlFor="Luongduoctra">Lương được trả:</Label>
               <Input
                 type="number"
@@ -311,7 +312,7 @@ const StaffListComponent = ({ selectStaff }) => {
                 id="Luongduoctra"
                 onChange={getdataSalaryPay}
               />
-            </FormGroup>
+            </FormGroup> */}
             <br></br>
             <Button type="submit" value="submit" color="primary" onClick={handleADD}>
               ADD

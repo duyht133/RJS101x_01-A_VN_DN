@@ -1,27 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  useSelector,
-  useDispatch,
-} from "react-redux";
+import { useSelector } from "react-redux";
 
 const Salary = () => {
   const basicSalary = 3000000;
   const overTimeSalary = 200000;
 
   const Render = () => {
-    const dataStaffs = useSelector((data) => { // get data department in store
-      return data.dataContact.staffs;
+    const salarys = useSelector((data) => {
+      // get data department in store
+      return data.dataContact.contact;
     });
 
-    return dataStaffs.map((staff) => (
-      <div className="col-lg-4 col-md-6 col-sm-12 " key={staff.id}>
+    return salarys.map((salary) => (
+      <div className="col-lg-4 col-md-6 col-sm-12 " key={salary.id}>
         <div className="salary">
-          <h1>{staff.name}</h1>
-          <p> Mã Nhân Viên: {staff.id}</p>
-          <p> Hệ Số Lương: {staff.salaryScale}</p>
-          <p> Số giờ làm thêm: {staff.overTime}</p>
-          <p>Lương: {staff.salaryScale * basicSalary + staff.overTime * overTimeSalary}</p>
+          <h1>{salary.name}</h1>
+          <p> Mã Nhân Viên: {salary.id}</p>
+          <p> Hệ Số Lương: {salary.salaryScale}</p>
+          <p> Số giờ làm thêm: {salary.overTime}</p>
+          <p>Lương: {salary.salaryScale * basicSalary + salary.overTime * overTimeSalary}</p>
         </div>
       </div>
     ));

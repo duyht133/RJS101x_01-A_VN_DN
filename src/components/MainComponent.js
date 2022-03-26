@@ -22,7 +22,7 @@ const MainComponent = () => {
       <Routes>
         <Route path="/" />
         <Route path="home" element={<StaffListComponent selectStaff={onSelectStaff} />} />
-        <Route path="/staff/:staffId" element={<RenderDish staff={staff} />} />
+        <Route path="/contact/:contactId" element={<RenderDish staff={staff} />} />
         <Route path="department" element={<Department />} />
         <Route path="salary" element={<Salary />} />
       </Routes>
