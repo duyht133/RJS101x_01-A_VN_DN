@@ -6,14 +6,13 @@ import {
   useDispatch,
 } from "react-redux"; /* 2 hook get, push dữ liệu lên store Redux */
 import { deleteContact } from "../redux/reducer";
-import { contactReducerThunk } from "../redux/reducer";
-import React, { useState, useEffect } from "react";
+
 
 const RenderDish = ({ staff }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
     if (staff.id !== null) {
-      /* confirm("Bạn có muốn xóa") */
+      window.alert("Dữ liệu sẽ bị xóa")
       dispatch(deleteContact(staff));
       window.location.reload();
     }
@@ -32,12 +31,12 @@ const RenderDish = ({ staff }) => {
               <h3>Họ và tên: {staff.name}</h3>
               <p>Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</p>
               <p>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</p>
-              <p>Phòng ban :{staff.name}</p>
+              <p>Phòng ban :{staff.department}</p>
               <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
               <p>Số ngày đã làm thêm: {staff.overTime}</p>
             </div>
             <div>
-              <button onClick={handleDelete}><Link to="/">Delete</Link></button>
+              <button className="btn-delete" onClick={handleDelete}><Link to="/" >Delete</Link></button>
             </div>
           </div>
         </div>

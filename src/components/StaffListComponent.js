@@ -93,7 +93,7 @@ const StaffListComponent = ({ selectStaff }) => {
   const [contact, setcontact] = useState(dataContact);
   useEffect(() => {
     setcontact(dataContact);
-    console.log("load");
+    console.log("load",contact);
   }, [dataContact]);
 
   // Options Selector

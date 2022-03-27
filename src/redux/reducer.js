@@ -88,10 +88,6 @@ export const contactReducer = createSlice({
       newList.contact = [...newList.contact, action.payload];
       return newList;
     },
-
-
-
-
     /////////////
     [deleteContact.fulfilled]: (state, action) => {
       const newList = { ...state }; // ... là toán tử spread es6 để sao chép lại dữ liệu state

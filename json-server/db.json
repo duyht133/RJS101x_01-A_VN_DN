@@ -85,76 +85,15 @@
       "salary": 5000000
     },
     {
-      "id": 9,
-      "name": "Nguyễn Văn L",
-      "doB": "2002-01-01T08:59:00.000Z",
-      "salaryScale": 1,
-      "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept05",
-      "annualLeave": 9,
-      "overTime": 10,
-      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      "salary": 5000000
-    },
-    {
-      "id": 10,
-      "name": "Nguyễn Văn M",
-      "doB": "2003-01-01T08:59:00.000Z",
-      "salaryScale": 1,
-      "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept05",
-      "annualLeave": 9,
-      "overTime": 10,
-      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      "salary": 5000000
-    },
-    {
-      "id": 11,
-      "name": "Nguyễn Văn N",
-      "doB": "2003-01-01T08:59:00.000Z",
-      "salaryScale": 1,
-      "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept05",
-      "annualLeave": 9,
-      "overTime": 10,
-      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      "salary": 5000000
-    },
-    {
-      "id": 12,
-      "name": "Nguyễn Văn O",
-      "doB": "2003-01-01T08:59:00.000Z",
-      "salaryScale": 1,
-      "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept05",
-      "annualLeave": 9,
-      "overTime": 10,
-      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      "salary": 5000000
-    },
-    {
-      "id": 13,
-      "name": "Nguyễn Văn S",
-      "doB": "2003-01-01T08:59:00.000Z",
-      "salaryScale": 1,
-      "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept05",
-      "annualLeave": 9,
-      "overTime": 10,
-      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      "salary": 5000000
-    },
-    {
-      "id": 14,
-      "name": "Nguyễn Văn R",
-      "doB": "2003-01-01T08:59:00.000Z",
-      "salaryScale": 1,
-      "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept05",
-      "annualLeave": 9,
-      "overTime": 10,
-      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      "salary": 5000000
+      "id": "15",
+      "name": "hà tấn duy",
+      "doB": "1994-11-17",
+      "salaryScale": "2",
+      "startDate": "34353-12-23",
+      "department": "HR",
+      "annualLeave": "43",
+      "overTime": "55",
+      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg"
     }
   ],
   "department": [
