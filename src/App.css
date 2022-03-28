@@ -44,11 +44,34 @@
   width: 100%;
   text-align: center;
 }
-.department {
-  background-color: rgb(166, 218, 166);
-  margin-bottom: 140px;
+.departmentbox {
+  display: flex;
   text-align: center;
+  justify-content: center;
+  width: 100%;
 }
+.staffdepartment{
+  background-color: rgb(166, 218, 166);
+  padding: 0 10px;
+  margin: 50px 20px;
+  cursor: pointer;
+}
+.staffdepartment a{
+  text-decoration: none;
+  color: black;
+}
+.renderdepart{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.renderdepartH4{
+  color:white;
+}
+
+
+
 .salary {
   background-color: rgb(166, 218, 166);
 }
@@ -101,5 +124,6 @@
   }
   .department {
     margin-bottom: 23px;
+    flex-wrap: wrap;
   }
 }

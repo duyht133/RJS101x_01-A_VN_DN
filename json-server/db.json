@@ -6,7 +6,7 @@
       "doB": "1999-01-01T08:59:00.000Z",
       "salaryScale": 1.1,
       "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept01",
+      "department": "Sale",
       "annualLeave": 1,
       "overTime": 1,
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
@@ -18,7 +18,7 @@
       "doB": "2001-01-01T08:59:00.000Z",
       "salaryScale": 1,
       "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept04",
+      "department": "Sale",
       "annualLeave": 4,
       "overTime": 5,
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
@@ -30,7 +30,7 @@
       "doB": "2002-01-01T08:59:00.000Z",
       "salaryScale": 1,
       "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept03",
+      "department": "IT",
       "annualLeave": 6,
       "overTime": 7,
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
@@ -42,7 +42,7 @@
       "doB": "1999-01-01T08:59:00.000Z",
       "salaryScale": 1,
       "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept03",
+      "department": "IT",
       "annualLeave": 8,
       "overTime": 1,
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
@@ -54,7 +54,7 @@
       "doB": "2003-01-01T08:59:00.000Z",
       "salaryScale": 1,
       "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept05",
+      "department": "Marketing",
       "annualLeave": 9,
       "overTime": 10,
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
@@ -66,7 +66,7 @@
       "doB": "2003-01-01T08:59:00.000Z",
       "salaryScale": 1,
       "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept03",
+      "department": "IT",
       "annualLeave": 9,
       "overTime": 10,
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
@@ -78,7 +78,7 @@
       "doB": "2003-01-01T08:59:00.000Z",
       "salaryScale": 1,
       "startDate": "2019-04-30T08:59:00.000Z",
-      "departmentId": "Dept04",
+      "department": "Marketing",
       "annualLeave": 9,
       "overTime": 10,
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
@@ -93,6 +93,17 @@
       "department": "HR",
       "annualLeave": "43",
       "overTime": "55",
+      "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg"
+    },
+    {
+      "id": "1774",
+      "name": "duy 02",
+      "doB": "0234-04-23",
+      "salaryScale": "12",
+      "startDate": "0234-04-23",
+      "department": "IT",
+      "annualLeave": "4",
+      "overTime": "2",
       "image": "https://www.cse.ust.hk/~muppala/img/muppala.jpg"
     }
   ],
@@ -115,12 +126,12 @@
     {
       "id": "Dept04",
       "name": "IT",
-      "numberOfStaff": 2
+      "numberOfStaff": 7
     },
     {
       "id": "Dept05",
       "name": "Finance",
-      "numberOfStaff": 9
+      "numberOfStaff": 5
     }
   ]
 }

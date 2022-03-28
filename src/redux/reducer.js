@@ -49,6 +49,20 @@ export const postContact = createAsyncThunk("user/PostContact", async (data) => 
     return res.data;
   });
 });
+//PUT request api department
+export const putDepartment = createAsyncThunk("user/putDepartment", async (data) => {
+  return axios({
+    method: "PUT",
+    url: "http://localhost:3001/department",
+    data: {
+    "id": "Dept01",
+    "name": "Sale",
+    "numberOfStaff": 1
+  },
+  }).then((res) => {
+    return res.data;
+  });
+});
 
 // delete request
 export const deleteContact = createAsyncThunk("user/deleteContact", async (data) => {
@@ -88,6 +102,19 @@ export const contactReducer = createSlice({
       newList.contact = [...newList.contact, action.payload];
       return newList;
     },
+
+
+
+    /////////////
+    [putDepartment.fulfilled]: (state, action) => {
+      const newList = { ...state }; // ... là toán tử spread es6 để sao chép lại dữ liệu state
+      newList.departments = [...newList.departments, action.payload];
+      return newList;
+    },
+
+
+
+
     /////////////
     [deleteContact.fulfilled]: (state, action) => {
       const newList = { ...state }; // ... là toán tử spread es6 để sao chép lại dữ liệu state

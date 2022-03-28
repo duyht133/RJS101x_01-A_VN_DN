@@ -9,8 +9,6 @@ import "../App.css";
 import {postContact} from "../redux/reducer"
 
 
-import { setStatecontact, contactReducerThunk } from "../redux/reducer"; // import actions từ reducer(công nhân)
-
 const StaffListComponent = ({ selectStaff }) => {
   /* tạo biến dispatch */
   const dispatch = useDispatch();
@@ -24,7 +22,6 @@ const StaffListComponent = ({ selectStaff }) => {
   const [dataSalary, setdataSalary] = useState("");
   const [dataDaysOff, setdataDaysOff] = useState("");
   const [dataOverTime, setdataOverTime] = useState("");
-  const [dataSalaryPayment, setdataSalaryPayment] = useState("");
   //get data ID
   const getdataID = (event) => setdataID(event.target.value);
   // get data Name
@@ -41,8 +38,6 @@ const StaffListComponent = ({ selectStaff }) => {
   const getdataDaysOff = (event) => setdataDaysOff(event.target.value);
   // get data overTime
   const getdataOvertime = (event) => setdataOverTime(event.target.value);
-  // get data SalaryPay
-  /* const getdataSalaryPay = (event) => setdataSalaryPayment(event.target.value); */
 
   ///////////////////////////////////
   /* state toggle */
@@ -71,7 +66,6 @@ const StaffListComponent = ({ selectStaff }) => {
       annualLeave: dataDaysOff,
       overTime: dataOverTime,
       image: "https://www.cse.ust.hk/~muppala/img/muppala.jpg",
-      /* salary: dataSalaryPayment, */
     };
     if (
       // so sánh điều kiện input nhập vào nếu nhập đủ các trường thì cho phép dispatch lên store.
@@ -85,6 +79,7 @@ const StaffListComponent = ({ selectStaff }) => {
       toggleModal();
     } else AddBlur(); // gọi trực tiếp từ validate form
   };
+
   ///////////////////////////////////
   /* state option select */ // lấy từ staffs
   /* Data Contact and search and options */
@@ -106,8 +101,6 @@ const StaffListComponent = ({ selectStaff }) => {
     });
   });
 
-
-
   // tạo state để lưu trữ giá trị input search
   const [dataSearch, setdataSearch] = useState("");
   const getdataSearch = (event) => {
@@ -123,6 +116,7 @@ const StaffListComponent = ({ selectStaff }) => {
       return contact.name.toLowerCase().includes(dataSearch.toLowerCase());
     });
     setcontact(newListStaff); //set state staffs là 1 dữ liệu mới đã lọc
+    console.log(newListStaff)
   };
 
   ///////////////////////////////////

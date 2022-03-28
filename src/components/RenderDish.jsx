@@ -13,8 +13,10 @@ const RenderDish = ({ staff }) => {
   const handleDelete = () => {
     if (staff.id !== null) {
       window.alert("Dữ liệu sẽ bị xóa")
-      dispatch(deleteContact(staff));
-      window.location.reload();
+      setTimeout(()=>{
+        dispatch(deleteContact(staff));
+        window.location.reload();
+      },500)
     }
   };
   // nhận staff từ mainComponent
@@ -36,7 +38,7 @@ const RenderDish = ({ staff }) => {
               <p>Số ngày đã làm thêm: {staff.overTime}</p>
             </div>
             <div>
-              <button className="btn-delete" onClick={handleDelete}><Link to="/" >Delete</Link></button>
+            <Link to="/" ><button className="btn-delete" onClick={handleDelete}>Delete</button></Link>
             </div>
           </div>
         </div>
